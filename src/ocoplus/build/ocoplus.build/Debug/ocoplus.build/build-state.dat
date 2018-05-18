@@ -1,0 +1,34 @@
+Tocoplus
+v7
+r1
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Volumes/FatBob/uhts/rex/bin/src/ocoplus/build/Debug/ocoplus
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/ocoplus/build/ocoplus.build/Debug/ocoplus.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/ocoplus/build/ocoplus.build/Debug/ocoplus.build/Objects-normal/x86_64/ocoplus.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/ocoplus/main.cpp
+c000000004CE1995F0000000000002A9F
+t1289853279
+s10911
+i<iostream>
+
+CCompileC build/ocoplus.build/Debug/ocoplus.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/ocoplus/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+r0
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/ocoplus/build/Debug/ocoplus normal x86_64
+r0
+

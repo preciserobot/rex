@@ -1,0 +1,225 @@
+#!/usr/bin/perl -w
+
+# checks run quality from export file
+
+##          ## FIXED READ LENGTH OF 75
+## 26.11.09 ## AUTODETECT TILE NUMBER
+
+
+# proportion of filtered reads
+# per tile
+	# qdrop
+	# uncalled
+
+use strict;
+
+my $infile = shift @ARGV;
+
+#define basename and output files
+my $basename       = ($infile =~ /^(\w+\_\d+\_)/) ? $1 : (($infile =~ /^(\d+\_)/) ? $1 : die "strange file name") ;
+my $out_tilematrix = $basename . "matrix";
+my $out_tile       = $basename . "tile";
+my $out_Q          = $basename . "Q";
+my $out_N          = $basename . "N";
+my $out_report     = $basename . "report";
+
+# input
+open(EXP, "<$infile") or die;
+
+# drop pos by coordinate
+my $tiles = [];
+my $resol = 100;
+open(TIM, ">$out_tilematrix") or die $out_tilematrix;
+
+# drop pos medians per tile
+my $fulltiles = [];
+open(TI, ">$out_tile") or die;
+
+# tile quality (per position)
+my $tiq = [];
+my $maxQ = 0;
+open(TIQ, ">$out_Q") or die;
+
+# N at position
+my $tin = [];
+open(TIN, ">$out_N") or die;
+
+# reports per tile
+my $qcfail = [];
+my $qcpass = [];
+open(REPORT, ">$out_report") or die;
+
+my $readlength = 75;
+my $line = 0;
+my $maxtile = 0;
+while (<EXP>) {
+	#my $pline = $_;
+	#unless ($line % 100) { print SAMPLE $_ }
+	if (/\S+\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+\d+\s+\d+\s+(\w+)\s+(\S+)\s+(\S+)/) {
+#                          TILE    X       Y                    SEQ     QUAL   STATE
+		print STDERR "\r" . $line/1000000 . "M   " if (++$line % 10000 == 0);
+		# set tile number
+		if ($1 > $maxtile) { $maxtile = $1 }
+		# QUALC MATRIX
+		if ($6 eq "QC") {
+			$qcfail->[$1]++;
+			next;
+		}
+		else {
+			$qcpass->[$1]++;
+			# qual at pos
+			my @pos = split //, $5;
+			$readlength = scalar(@pos);
+			my $drop = $readlength;
+			for(my $i = 0; $i < $readlength; $i++) {
+				my $Q = (ord($pos[$i]) - 64);
+				#my $Q = int(10 * log(1 + 10 ** ((ord($pos[$i]) - 64) / 10.0)) / log(10)); # for solexa quality <1.3 (non-asymptotical)
+				
+				if (($Q < 5) && ($drop > $i)) {
+					$drop = $i;
+				}
+				$tiq->[$1]->[$i]->[$Q]++; # TILE POS QUAL
+				$maxQ = ($maxQ < $Q) ? $Q : $maxQ;
+			}
+			# drop pos matrix
+			my $a = int($2/$resol);
+			my $b = int($3/$resol);
+			push @{$tiles->[$1]->[$a]->[$b]}, $drop;
+			# drop pos by tile
+			push @{$fulltiles->[$1]}, $drop;
+
+			# N at pos
+			my @bases = split //, $4;
+			for(my $i = 0; $i < $readlength; $i++) {
+				if ($bases[$i] eq "N") {
+					$tin->[$1]->[$i]++; # TILE POS N
+				}
+			}
+		}
+	}
+	else { die "unrecognized line" }
+}
+
+#merge to single matrix
+my @m;
+
+my $ymax = 2200/$resol; # max inclusive margins
+my $xmax = 2200/$resol;
+
+print STDERR "\n";
+
+
+###########
+### OUT ###
+###########
+
+# TIM
+for (my $t = 1; $t <= ($maxtile / 2); $t++) {
+	print STDERR "\rTIM $t";
+	for (my $y = 0; $y <= $ymax; $y++) {
+		for (my $x = 0; $x < $xmax; $x++) {
+			if (defined $tiles->[$t]->[$x]->[$y]) { print TIM _median($tiles->[$t]->[$x]->[$y]) }
+			print TIM "\t";
+		}
+		# tile 101 - t
+		my $t2 = ($maxtile + 1) - $t;
+		#for (my $y = 0; $y <= $ymax; $y++) {
+		for (my $x = 0; $x < $xmax; $x++) {
+			if (defined $tiles->[$t2]->[$x]->[$y]) { print TIM _median($tiles->[$t2]->[$x]->[$y]) }
+			if ($y < $ymax) { print TIM "\t" }
+		}
+		print TIM "\n";
+	}
+}
+close(TIM);
+
+# TI
+for (my $t = 1; $t <= ($maxtile / 2); $t++) {
+	print STDERR "\rTI  $t";
+	my $t2 = ($maxtile + 1) - $t;
+	if (defined $fulltiles->[$t])  { print TI _median($fulltiles->[$t])  }
+	print TI "\t";
+	if (defined $fulltiles->[$t2]) { print TI _median($fulltiles->[$t2]) }
+	print TI "\n";
+}
+close(TI);
+
+# TIQ
+for (my $t = 1; $t <= ($maxtile / 2); $t++) {
+	print STDERR "\rTIQ $t";
+	for (my $p = 0; $p < $readlength; $p++) {
+		# tile t
+		for (my $q = 0; $q <= $maxQ; $q++) {
+			print TIQ $tiq->[$t]->[$p]->[$q] ? $tiq->[$t]->[$p]->[$q] : 0;
+			print TIQ "\t";
+		}
+		# tile 101 - t
+		my $t2 = ($maxtile + 1) - $t;
+		for (my $q = 0; $q <= $maxQ; $q++) {
+			print TIQ $tiq->[$t2]->[$p]->[$q] ? $tiq->[$t2]->[$p]->[$q] : 0;
+			if ($q < $maxQ) { print TIQ "\t" }
+		}
+		print TIQ "\n";
+	}
+}
+close(TIQ);
+
+# TIN
+for (my $t = 1; $t <= $maxtile; $t++) {
+	print STDERR "\rTIN $t";
+	for (my $p = 0; $p < $readlength; $p++) {
+		print TIN "\t" if ($p > 0);
+		print TIN $tin->[$t]->[$p] ? $tin->[$t]->[$p] : 0;
+	}
+	print TIN "\n";
+}
+close(TIN);
+
+# REPORT
+for (my $t = 1; $t <= $maxtile; $t++) {
+	$qcpass->[$t] = ($qcpass->[$t]) ? $qcpass->[$t] : 0;
+	$qcfail->[$t] = ($qcfail->[$t]) ? $qcfail->[$t] : 0;
+	
+	
+	my $passfrac = $qcpass->[$t] / ($qcpass->[$t] + $qcfail->[$t]);
+	print STDERR "\rREP $t";
+	print  REPORT $t;
+	print  REPORT "\t";
+	print  REPORT $qcpass->[$t] + $qcfail->[$t];
+	print  REPORT "\t";
+	print  REPORT $qcpass->[$t];
+	print  REPORT "\t";
+	print  REPORT $qcfail->[$t];
+	print  REPORT "\t";
+	printf REPORT "%.2d", $passfrac;
+	print  REPORT "\t";
+	print  REPORT _median($fulltiles->[$t]);
+	print  REPORT "\n";
+}
+close(REPORT);
+
+exit(0);
+# filter seqs when determined good median for filtering
+# USE SOLSEQFILTER
+### uses report file
+
+
+####################################################################################################
+### SUBS ###########################################################################################
+####################################################################################################
+sub _median {
+	return "" unless ($_[0] && ($_[0] =~ /ARRAY/));
+	my $size = scalar(@{$_[0]});
+	my @Array = sort {$a <=> $b} @{$_[0]};
+	my $median;
+	if (($size % 2) == 0) {
+		#even -> average of middle 2
+		$median = $Array[int($#Array / 2)] + (($Array[int($#Array / 2) + 1] - $Array[int($#Array / 2)]) / 2);
+	}
+	else {
+		# odd -> center value
+		$median = $Array[($#Array / 2)];
+	}
+	die unless defined $median;
+	return $median;
+}

@@ -1,0 +1,156 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+unless (scalar(@ARGV) > 0) {
+	print STDERR "Usage: solfi <input> <pos> <score>\n";
+	exit(1);
+}
+
+my $file = shift @ARGV;
+my $drop = shift @ARGV;
+my $minq = shift @ARGV;
+my $outf = $file . '.filtered';
+unless (defined $drop) { $drop = 50 }
+unless (defined $minq) { $minq = 5 }
+my $e = [$file, $drop, $minq , $outf];
+print STDERR "\n";
+print STDERR "         Input: $e->[0] \n";
+print STDERR "        Output: $e->[3] \n";
+print STDERR "    Drop Limit: $e->[1] \n";
+print STDERR " Quality Limit: $e->[2] \n";
+print STDERR "\n";
+my $rj = dropFilter($e);
+print STDERR "\tRejected ".scalar(@{$rj})." tiles ";
+foreach my $i (@{$rj}) { print STDERR "\n$i" }
+print STDERR "\n\n";
+exit(0);
+
+####################################################################################################
+## FILTER FUNCTIONS ################################################################################
+####################################################################################################
+sub dropFilter {
+	my $e = $_[0];
+	my $infile = $e->[0];
+	open(RIN, "<$infile") or die;
+	my $outfile = $e->[3];
+	open(ROUT, ">$outfile") or die;
+	my $seqwrt = 1;
+	my $length = 75;
+	my $seq = [];
+	my $t = 0; #the current tile
+	my (@rejected,@tilestack,@tilestat);
+	my $seqcounter = 0;
+	my $line = 0;
+	while (<RIN>) {
+		++$line;
+		my $chp = $_;
+		chomp($chp);
+		if    (($chp =~ /^((A|T|G|C|N)+)$/) && ($seqwrt == 2)) { die "2|$chp" unless ($seqwrt == 2); $seq->[1] = $chp; $seqwrt++; $length = (($seqcounter == 1) ^ ($length = length($1))) ? length($1) : die } #SEQ
+		elsif (($chp =~ /^[^\s]{$length}$/) && ($seqwrt == 4)) { die "4|$chp" unless ($seqwrt == 4); $seq->[3] = $chp; $seqwrt=1;
+			# add to tile stack
+			push @tilestack, $seq;
+			push @tilestat, c_dp($chp, $e->[2], 64);
+			$seq = [];
+		} #QUAL
+		elsif ($chp =~ /^@([^:]+:[^:]+:)([^:]+):/) { 
+			die "1|$chp" unless ($seqwrt == 1);
+			$seq->[0] = $chp;
+			$seqwrt++;
+			if ($t != $2) {
+				$t = $2;
+				# print if accepted
+				die unless (scalar(@tilestack) == scalar(@tilestat));
+				if (scalar(@tilestat)) {
+					my $m = _median(\@tilestat);
+					if ($m >= $e->[1]) {
+						_fiPrint(*ROUT, \@tilestack) ;
+					}
+					else {
+						push @rejected, $1.$2."($m)";
+					}
+				}
+				# reset
+				@tilestack = ();
+				@tilestat = ();
+			}
+			if (++$seqcounter % 1000 == 0) {
+				print STDERR "\r -> FILTERING $t ".$seqcounter;
+			}
+		} #ID
+		elsif ($chp =~ /^\+/)                                          { die "3|$chp" unless ($seqwrt == 3); $seq->[2] = $chp; $seqwrt++;   } #ID+
+		elsif ($chp =~ /^\s*$/)                                        { next } # empty line
+		else                                                           { die ">$chp<$line>$infile<" } # something else
+		
+	}
+	close(RIN);
+	# do last
+	die unless (scalar(@tilestack) == scalar(@tilestat));
+	if (_median(\@tilestat) >= $e->[1]) {
+		_fiPrint(*ROUT, \@tilestack) ;
+	}
+	else {
+		push @rejected, $1.$2.'('._median(\@tilestat).')';
+	}
+	close(ROUT);
+	die if system("mv $outfile $infile");
+	return \@rejected;
+}
+
+
+####################################################################################################
+### C FUNCTIONS ####################################################################################
+####################################################################################################
+use Inline C => <<'END_C';
+
+int c_dp(char* s, int ib, int phred) {
+	int droppos = strlen(s);
+	int i;
+	for(i = 0; i < strlen(s); i++) {
+		if ((int) s[i] - phred < ib) {
+			if (droppos == strlen(s)) {
+				droppos = i;
+			}
+		}
+		else {
+			droppos = strlen(s);
+		}
+	}
+	return droppos;
+}
+
+END_C
+
+####################################################################################################
+### INTERNALS ######################################################################################
+####################################################################################################
+
+sub _fiPrint {
+	my $fh = $_[0];
+	foreach my $s (@{$_[1]}) {
+		print $fh $s->[0] . "\n";
+		print $fh $s->[1] . "\n";
+		print $fh $s->[2] . "\n";
+		print $fh $s->[3] . "\n";
+	}
+	return;
+}
+
+sub _median {
+	return "" unless ($_[0] && ($_[0] =~ /ARRAY/));
+	my $size = scalar(@{$_[0]});
+	my @Array = sort {$a <=> $b} @{$_[0]};
+	my $median;
+	if (($size % 2) == 0) {
+		#even -> average of middle 2
+		$median = $Array[int($#Array / 2)] + (($Array[int($#Array / 2) + 1] - $Array[int($#Array / 2)]) / 2);
+	}
+	else {
+		# odd -> center value
+		$median = $Array[($#Array / 2)];
+	}
+	die unless defined $median;
+	return $median;
+}
+
+1;

@@ -1,0 +1,34 @@
+Tswample
+v7
+r1
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/swample.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+c000000004C56C74A0000000000002613
+t1280755530
+s9747
+i<iostream>
+
+CCompileC build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+r0
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample normal x86_64
+r0
+

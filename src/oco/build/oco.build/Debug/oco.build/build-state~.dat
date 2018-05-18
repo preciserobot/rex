@@ -1,0 +1,51 @@
+Toco
+v7
+r0
+t307971586.182500
+cCheck dependencies
+cCompileC build/oco.build/Debug/oco.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Volumes/FatBob/uhts/rex/bin/src/oco/build/Debug/oco
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/Objects-normal/x86_64/oco.LinkFileList
+c000000004CAB0E820000000000000062
+t1286278786
+s98
+
+N/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp
+c000000004CAB0E8100000000000013C2
+t1286278785
+s5058
+i<iostream>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies307971586#307971586#0(0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/oco.build/Debug/oco.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s307971586.174670
+e307971586.182422
+r0
+xCompileC
+xbuild/oco.build/Debug/oco.build/Objects-normal/x86_64/main.o
+x/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@53"Compile /Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971586#307971586#0(2053"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:12:42: error: boost/graph/adjacency_list.hpp: No such file or directory/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:13:43: error: boost/pending/disjoint_sets.hpp: No such file or directory/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:14:51: error: boost/graph/incremental_components.hpp: No such file or directory/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:15:40: error: boost/graph/graph_traits.hpp: No such file or directory/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:16:48: error: boost/graph/connected_components.hpp: No such file or directory/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp: In function 'int main(int, char**)':/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:33: error: 'Exon' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:33: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:33: error: expected type-specifier before 'Exon'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:33: error: expected `;' before 'Exon'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:34: error: 'Read' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:34: error: 'reads' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:34: error: expected type-specifier before 'Read'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:34: error: expected `;' before 'Read'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:35: error: 'Region' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:35: error: 'regions' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:35: error: expected type-specifier before 'Region'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:35: error: expected `;' before 'Region'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:56: warning: format '%s' expects type 'char*', but argument 3 has type 'int*'/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp:56: warning: format '%s' expects type 'char*', but argument 4 has type 'int*'19(4@57"Boost/graph/adjacency_list.hpp: No such file or directory307971586#0#118#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#12#0#12#0#28"*: No such file or directory0(4@58"Boost/pending/disjoint_sets.hpp: No such file or directory307971586#118#119#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#13#0#13#0#28"*: No such file or directory0(4@65"Boost/graph/incremental_components.hpp: No such file or directory307971586#237#126#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#14#0#14#0#28"*: No such file or directory0(4@55"Boost/graph/graph_traits.hpp: No such file or directory307971586#363#116#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#15#0#15#0#28"*: No such file or directory0(4@63"Boost/graph/connected_components.hpp: No such file or directory307971586#479#124#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#16#0#16#0#28"*: No such file or directory0(4@37"'Exon' was not declared in this scope307971586#687#95#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#33#0#33#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope307971586#782#96#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#33#0#33#0#34"'*' was not declared in this scope0(4@37"Expected type-specifier before 'Exon'307971586#878#95#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#33#0#33#0#19"expected * before *0(4@26"Expected `;' before 'Exon'307971586#973#84#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#33#0#33#0#19"expected * before *0(4@37"'Read' was not declared in this scope307971586#1057#95#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#34#0#34#0#34"'*' was not declared in this scope0(4@38"'reads' was not declared in this scope307971586#1152#96#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#34#0#34#0#34"'*' was not declared in this scope0(4@37"Expected type-specifier before 'Read'307971586#1248#95#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#34#0#34#0#19"expected * before *0(4@26"Expected `;' before 'Read'307971586#1343#84#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#34#0#34#0#19"expected * before *0(4@39"'Region' was not declared in this scope307971586#1427#97#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#35#0#35#0#34"'*' was not declared in this scope0(4@40"'regions' was not declared in this scope307971586#1524#98#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#35#0#35#0#34"'*' was not declared in this scope0(4@39"Expected type-specifier before 'Region'307971586#1622#97#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#35#0#35#0#19"expected * before *0(4@28"Expected `;' before 'Region'307971586#1719#86#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#35#0#35#0#19"expected * before *0(22@64"Format '%s' expects type 'char*', but argument 3 has type 'int*'307971586#1805#124#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#56#0#56#0#56"format '*' expects type '*', but argument * has type '*'0(22@64"Format '%s' expects type 'char*', but argument 4 has type 'int*'307971586#1929#124#0(6@45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp307971585#56#0#56#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#45"/Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp7863407194600464384#1197"    cd /Volumes/FatBob/uhts/rex/bin/src/oco    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/oco-generated-files.hmap -I/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/oco-own-target-headers.hmap -I/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/oco-all-target-headers.hmap -iquote /Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/oco-project-headers.hmap -F/Volumes/FatBob/uhts/rex/bin/src/oco/build/Debug -I/Volumes/FatBob/uhts/rex/bin/src/oco/build/Debug/include -I/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/DerivedSources/x86_64 -I/Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/DerivedSources -c /Volumes/FatBob/uhts/rex/bin/src/oco/main.cpp -o /Volumes/FatBob/uhts/rex/bin/src/oco/build/oco.build/Debug/oco.build/Objects-normal/x86_64/main.o1#
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/oco/build/Debug/oco normal x86_64
+r0
+

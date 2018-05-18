@@ -1,0 +1,208 @@
+#!/usr/bin/perl -w
+
+use strict;
+use DBD::mysql;
+
+# globals
+
+my $sqlhost = "hkserv.local";
+my $sqluser = "dbrawand";
+my $sqlport = "3306"; 
+my $sqldb   = "rex";
+my $sqlatab = "ANALYSIS";
+
+
+my @restrictions;
+while (my $crit = shift @ARGV) {
+	my $add = (scalar(@restrictions) == 0) ? "WHERE" : "AND";
+	if ($crit =~ /^([\+|-])(\S+)/) {
+		if ($1 eq "-") {
+			$add .= " id NOT LIKE \"%".$2."%\"";
+		}
+		elsif ($1 eq "+") {
+			$add .= " id LIKE \"%".$2."%\"";
+		}
+		push @restrictions, $add;
+	}
+	elsif ($crit =~ /^:(\S+)$/) {
+		$sqlatab = $1;
+	}
+}
+my $rstring = (@restrictions) ? (join " ", @restrictions) : "";
+
+# get all ids
+my ( %ids, $i, $analyisID );
+my $dbh = DBI->connect("DBI:mysql:$sqldb:$sqlhost:$sqlport","$sqluser","") or die "Database connection not made: $DBI::errstr"; 
+my $sth = $dbh->prepare( qq{ select distinct id from `$sqlatab` $rstring } );
+$sth->execute();
+$sth->bind_columns( \$analyisID );
+while( $sth->fetch() ) { $ids{$analyisID} = 1 } # store and activate
+
+# set toggle
+my $input;
+my ($activated, $extracted);
+print STDERR "\nUsing Analysis table $sqlatab\n\n";
+do {
+	# list ids
+	$activated = 0;
+	my $pos;
+	foreach my $id (sort { $a cmp $b } keys %ids) {
+		print STDERR "\t" . ($ids{$id} ? "*" : " ") . " " . ++$pos . "\t$id";
+		print STDERR  ($pos % 4 == 0) ? "\n" : "\t\t";
+		if ($ids{$id}) { ++$activated }
+	}
+	print STDERR "\nEnter STRING or NUMBER to toggle or just hit ENTER to accept current choice ($activated sets): ";
+	$input = <STDIN>;
+	if ($input =~ /([^\n]+)/) {
+		my $tggl = $1;
+		my $tpos;
+		foreach my $id (sort { $a cmp $b } keys %ids) {
+			if (++$tpos =~ /^$tggl$/ || $id =~ /$tggl/) {
+				$ids{$id} = ($ids{$id}) ? 0 : 1;
+			}
+		}
+	}
+} while ($input =~ /\w/);
+
+####verify if all tables are there
+# get table list 
+my %available;
+my @notavailable;
+my $ava;
+$sth = $dbh->prepare( qq{ show tables like \"%_raparm_rpkm\" } );
+$sth->execute();
+$sth->bind_columns( \$ava );
+while( $sth->fetch() ) {
+	if ($ava =~ /(.+)\_raparm\_rpkm/) {
+		$available{$1} = 1;
+	}
+}
+# crosscheck and deactivate if necessary
+foreach my $id (sort { $a cmp $b } keys %ids) {
+	if ($ids{$id}) {
+		unless ($available{$id}) {
+			push @notavailable, $id;
+		}
+	}
+}
+# deactivate
+if (@notavailable) {
+	warn "\nWARNING: The following analysis are still in progress and are excluded (".(scalar @notavailable)."):\n";
+	print STDERR "\t" . (join ", ", @notavailable) . "\n\n";
+	foreach my $na (@notavailable) { $ids{$na} = 0 }
+}
+
+####select orthology table
+print STDERR "Please enter orthology table name (orthology57strict): ";
+my $ortab = <STDIN>;
+chomp($ortab);
+my $sqlotab = $ortab ? $ortab : "orthology57strict";
+print STDERR " -> will use orthology table ".uc($sqlotab)."\n";
+
+####select columns
+print STDERR "Please enter column name to extract (tagged_length,mappedreads,rpkm): ";
+my $col = <STDIN>;
+chomp($col);
+$col = $col ? $col : "mappedreads";
+print STDERR " -> will extract column ".uc($col)."\n";
+
+
+
+####EXTRACT DATA
+my %idents;
+my %results; # %{species}{tissue}{gender}[0]{orthologygroup}{maplength|count|rpkm}
+my $setcount;
+my $maxo; # the max ortho id
+foreach my $id (sort { $a cmp $b } keys %ids) {
+	if ($ids{$id}) {
+		# extract
+		if ($id =~ /^(\w{3})\_(\w{2})\_(\w\d?)\_([^\_]+)/) {
+			$idents{$1}{$2} = $id;
+			# extract
+			print STDERR "\r " . $id . " (" . ++$extracted. "/" . ($activated - scalar(@notavailable)) . ")     ";
+			my ( $orthoid, $column, $chk );
+			$sth = $dbh->prepare("SELECT o.ortho_id, g.$col, rpkm FROM " . $id . "_raparm_rpkm as g, $sqlotab as o where g.geneid = o.". ( (substr($id,0,3) eq 'ppa') ? 'ptr' : substr($id,0,3) ) ."_id");
+			$sth->execute();
+			$sth->bind_columns( \$orthoid, \$column, \$chk );
+			while( $sth->fetch() ) {
+				if ($chk =~ /(NA|NULL|-1)/) {
+					$results{$orthoid}{$id} = '\N';
+				}
+				else {
+					$results{$orthoid}{$id} = $column;
+				}
+			}
+		}
+		else { print STDERR "Could not parse identifier $id" }
+	}
+	else {
+		delete $ids{$id};
+	}
+}
+
+# PRINT TABLE HEADER
+foreach my $oid (sort {$a <=> $b} keys %results) {
+	print STDOUT "ORTHO_ID";
+	foreach my $set (sort { sortscore($a) <=> sortscore($b) } keys %ids) {
+		print STDOUT "\t" . $set
+	}
+	print STDOUT "\n";
+	last;
+}
+print STDERR "\n";
+my $lines = scalar(keys(%results));
+# PRINT TABLE VALUES
+foreach my $oid (sort {$a <=> $b} keys %results) {
+	if (--$lines % 100 == 0) { print STDERR "\r" . $lines . " " }
+	print STDOUT $oid;
+	foreach my $set (sort { sortscore($a) <=> sortscore($b) } keys %ids) {
+		print STDOUT "\t";
+		print STDOUT (defined $results{$oid}{$set}) ? $results{$oid}{$set} : "NA";
+	}
+	print STDOUT "\n";
+}
+print STDERR "\n";
+
+
+# get unified orthology number and rpkm or count
+# bind sets in perl and write to flatfile
+
+
+# read orthology groups (by species)
+
+sub sortscore {
+	my %order = (
+		# species
+		'hsa' => 100,
+		'ptr' => 200,
+		'ppa' => 300,
+		'ggo' => 400,
+		'ppy' => 500,
+		'mml' => 600,
+		'mmu' => 700,
+		'mdo' => 800,
+		'oan' => 900,
+		'gga' => 1000,
+		# tissues
+		'br' => 10,
+		'cb' => 20,
+		'ht' => 30,
+		'kd' => 40,
+		'lv' => 50,
+		'ts' => 60,
+		# gender
+		'm' => 1,
+		'f' => 2
+	);
+	if ($_[0] =~ /^(\w{3})\_(\w{2})\_(\w)/) {
+		return $order{$1} + $order{$2} + $order{$3};
+	}
+	else { warn "could not parse analysisID" }
+	return 10000;
+}
+
+
+# extract grouped by species (SQL) and join joint tables
+#foreach my $species (keys %idents) {
+	# build query 
+#}

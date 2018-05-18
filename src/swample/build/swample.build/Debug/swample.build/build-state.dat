@@ -1,0 +1,74 @@
+Tswample
+v7
+r0
+t302450616.989236
+cCheck dependencies
+cCompileC build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004A5C14A7000000000000563E
+t1247548583
+s22078
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample
+t1280757816
+s53064
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o
+t1280757816
+s180196
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/swample.LinkFileList
+c000000004C56D038000000000000006E
+t1280757816
+s110
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+c000000004C56D0380000000000000767
+t1280757816
+s1895
+i<cstdio>
+i<cstdlib>
+i<fstream>
+i<iomanip>
+i<iostream>
+i<unistd.h>
+i<set>
+i<vector>
+i<algorithm>
+i<numeric>
+i<iterator>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies302450616#302450616#0(0"0(0#1#0"4300911832#0"0#
+
+CCompileC build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s302450616.514164
+e302450616.968144
+r1
+xCompileC
+xbuild/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o
+x/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@57"Compile /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302450616#302450616#0(0"0(0#0#49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp4300911832#1313"    cd /Volumes/FatBob/uhts/rex/bin/src/swample    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/swample-generated-files.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/swample-own-target-headers.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/swample-all-target-headers.hmap -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/swample-project-headers.hmap -F/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/include -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/DerivedSources/x86_64 -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/DerivedSources -c /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp -o /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/main.o0#
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample normal x86_64
+s302450616.968272
+e302450616.989176
+r1
+xLd
+x/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample
+xnormal
+xx86_64
+lSLF07#2@65"Link /Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample302450616#302450616#0(0"0(0#0#0"4300911832#508"    cd /Volumes/FatBob/uhts/rex/bin/src/swample    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug -F/Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug -filelist /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Debug/swample.build/Objects-normal/x86_64/swample.LinkFileList -mmacosx-version-min=10.6 -o /Volumes/FatBob/uhts/rex/bin/src/swample/build/Debug/swample0#
+

@@ -1,0 +1,500 @@
+   10  cd Program\ Files/
+   11  ll
+   12  cd Monte\ Cristo/
+   13  ls
+   14  cd Cities\ XL/
+   15  LS
+   16  ls
+   17  du -h -d1
+   18  exit
+   19  ssh FRED.local say "Super doctor frepderick, come here! Now"
+   20  exit
+   21  cd Desktop/slim
+   22  cd Desktop/slimcheck/
+   23  raparm-ng RFexon RFmap 1 RFout.map RFout.rpkm RFout.islands
+   24  head -n5000000 RFmap > RFma
+   25  raparm-ng RFexon RFmap 1 RFout.map RFout.rpkm RFout.islands
+   26  raparm-ng RFexon RFmap 1 RFout.map RFout.rpkm RFout.islands
+   27  raparm-ng RFexon RFma 1 RFout.map RFout.rpkm RFout.islands
+   28  raparm-ng RFexon RFma 1 RFout.map RFout.rpkm RFout.islands
+   29  raparm-ng RFexon RFma 1 RFout.map RFout.rpkm RFout.islands
+   30  raparm-ng RFexon RFma 1 RFout.map RFout.rpkm RFout.islands
+   31  ll
+   32  fg
+   33  grep R RFout.islands 
+   34  ll
+   35  less RFout.rpkm 
+   36  R
+   37  head -n1000000 RFmap > RFm
+   38  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   39  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   40  history | grep rsync
+   41  rsync -avpPu ../cprogs/raparm-ng/* CIG-3040-15823.local:~/bioperl/cprog/raparm-ng/
+   42  open .
+   43  exit
+   44  top
+   45  top | grep raparm
+   46  top
+   47  exit
+   48  history | grep rsync
+   49  rsync -avpPu CIG-3040-15823.local:~/uhts/slimcheck/ ./Desktop/slimcheck/
+   50  rsync -avpPu CIG-3040-15823.local:~/bioperl/cprog/ ./Desktop/cprogs/
+   51  cd Desktop
+   52  cd slimcheck/
+   53  ll
+   54  history | grep raparm
+   55  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   56  ll
+   57  rm raparm-ng 
+   58  rm raparm-ng 
+   59  ln -s ~/Desktop/cprogs/raparm-ng/build/Release/raparm-ng .
+   60  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   61  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   62  ll
+   63  tail -n100000 RFm > RFm2
+   64  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   65  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   66  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   67  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   68  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   69  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   70  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   71  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   72  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   73  raparm-ng RFexon RFm2 1 RFout.map RFout.rpkm RFout.islands
+   74  ll
+   75  less RFout.islands 
+   76  less RFout.map
+   77  raparm-ng RFexon RFmap 1 RFout.map RFout.rpkm RFout.islands
+   78  raparm-ng RFexon RFma 1 RFout.map RFout.rpkm RFout.islands
+   79  ssh hkserv.local
+   80  history | grep rsync
+   81  rsync -avpPu ./Desktop/cprogs/raparm-ng/* cig-123-151.unil.ch:~/bioperl/cprog/raparm-ng/
+   82  rsync -avpPu ./Desktop/cprogs/raparm-ng/* cig-123-151.unil.ch:~/bioperl/cprog/raparm-ng/
+   83  ssh cig-123-151.unil.ch
+   84  exi
+   85  exit
+   86  cd Desktop/slimcheck/
+   87  head RFm
+   88  man grep
+   89  raparm-ng RFexon RFmap 1 RFout.map RFout.rpkm RFout.islands
+   90  head -n5000000 RFmap > RFm
+   91  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   92  wc -l RFmap
+   93  head -n3877366 RFmap > RFm
+   94  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   95  less RFout.map 
+   96  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   97  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   98  raparm-ng RFexon RFm 1 RFout.map RFout.rpkm RFout.islands
+   99  ll
+  100  gead RFout.*
+  101  head RFout.*
+  102  rsync cig-123-151.unil.ch:~/bioperl/cprog/ ./Desktop/cprogs/
+  103  rsync avp cig-123-151.unil.ch:~/bioperl/cprog/ ./Desktop/cprogs/
+  104  rsync -avp cig-123-151.unil.ch:~/bioperl/cprog/ ./Desktop/cprogs/
+  105  exit
+  106  ssh cig-123-151.unil.ch ping hkserv.local
+  107  ssh cig-123-156.unil.ch
+  108  rsync -avpP ~/Pictures/Lightroom/ /Volumes/PROJECT_TREE/BACKUP_PHOTO/
+  109  rsync -avpP ~/Pictures/20?? /Volumes/PROJECT_TREE/BACKUP_PHOTO/
+  110  exit
+  111  ssh cig-123-117.unil.ch
+  112  ssh hkdev@cig-123-117.unil.ch
+  113  ssh cig-123-151.unil.ch
+  114  cd Desktop/cova/
+  115  scp cig-123-151.unil.ch:~/uhts/ng/mdo/mdo_br_test_raparm_map .
+  116  scp cig-123-151.unil.ch:~/uhts/ng/mdo/mdo_br_test_raparm_map .
+  117  ll
+  118  mv mdo_br_test_raparm_map ..; rsync -avpP ../cova cig-123-151.unil.ch:~/bioperl/cprogs/
+  119  rsync avpP ../cova cig-123-151.unil.ch:~/bioperl/cprogs/
+  120  cd..
+  121  rsync avpP cova/ cig-123-151.unil.ch:~/bioperl/cprogs/cova
+  122  rsync avpP cova/ cig-123-151.unil.ch:~/bioperl/cprog/cova
+  123  rsync -avpP cova/ cig-123-151.unil.ch:~/bioperl/cprog/cova
+  124  rsync -avpP cova/ cig-123-151.unil.ch:~/bioperl/cprog/cova
+  125  ssh cig-123-151.unil.ch
+  126  ssh cig-123-151.unil.ch
+  127  rsync -avpP cig-123-151.unil.ch:~/bioperl/cprog/ ~/Desktop/cprogs/
+  128  rsync -avpP cig-123-151.unil.ch:~/bioperl/cprog/ ~/Desktop/cprogs/
+  129  open Desktop/cprogs/
+  130  scp cig-123-151.unil.ch:~/bioperl/cprog/*.?pp Desktop/cprogs/
+  131  scp cig-123-151.unil.ch:~/bioperl/cprog/raparm-ng/*.?pp Desktop/cprogs/
+  132  diff Desktop/cprogs/main.cpp Desktop/cprogs/raparm-ng/main.cpp 
+  133  clear; diff Desktop/cprogs/raparm-ng.hpp Desktop/cprogs/raparm-ng/raparm-ng.hpp 
+  134  clear; diff Desktop/cprogs/raparm-ng.hpp Desktop/cprogs/raparm-ng/raparm-ng.hpp > rdiffs.tmp
+  135  mate rdiffs.tmp 
+  136  exit
+  137  rsync -avpP cig-123-151.unil.ch:~/bioperl/cprog/ ~/Desktop/cprogs/
+  138  ssh cig-123-151.unil.ch
+  139  cd cprogs
+  140  cd Desktop/
+  141  cd cgro
+  142  cd cprogs/
+  143  ls
+  144  ll
+  145  rm main.cpp 
+  146  rm raparm-ng.hpp 
+  147  scp cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/smallmap .
+  148  scp cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/smallmap .
+  149  ping www.google.ch
+  150  ping www.unil.ch
+  151  scp cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/smallmap .
+  152  scp cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/homo_sapiens_core_56_37a_RCexon .
+  153  scp cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/hsa_fc_both_RAPmap .
+  154  rsync -avpP cig-123-151.unil.ch:~/uhts/ng/hsa/fc_strandspecific/hsa_fc_both_RAPmap .
+  155  ls
+  156  ln -s raparm-ng/build/Release/raparm-ng .
+  157  ln -s raparm-ng/build/Release/raparm-ng ./rng
+  158  ll
+  159  rng 
+  160  mv homo_sapiens_core_56_37a_RCexon RCexon
+  161  rng RCexon smallmap 1 out.map out.rpkm out.islands out.coverage
+  162  rng RCexon smallmap 1 out.map out.rpkm out.islands out.coverage
+  163  rng RCexon smallmap 1 out.map out.rpkm out.islands out.coverage
+  164  ll
+  165  less out.islands 
+  166  mv hsa_fc_both_RAPmap RAPmap
+  167  ll
+  168  rng RCexon smallmap 1 out.map out.rpkm out.islands out.coverage
+  169  rng RCexon RAPmap 1 out.map out.rpkm out.islands out.coverage
+  170  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  171  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  172  rm RAPmap 
+  173  rm rng 
+  174  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  175  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  176  exit
+  177  exit
+  178  cd Desktop/
+  179  cd cprogs/
+  180  ls
+  181  raparm-ng/build/Release/raparm-ng ~/Desktop/cprogs/RCexon ~/Desktop/cprogs/smallmap 1 out.map out.rpkm out.islands out.coverage 
+  182  ll
+  183  less out.islands 
+  184  less out.islands 
+  185  head out.islands 
+  186  cut -f11 out.islands | uniq | sort -u
+  187  wc -l out.islands 
+  188  sort -k6nr out.islands 
+  189  sort -k6nr out.islands | head
+  190  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  191  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  192  raparm-ng/build/Release/raparm-ng ~/Desktop/cprogs/RCexon ~/Desktop/cprogs/smallmap 1 out.map out.rpkm out.islands out.coverage 
+  193  raparm-ng/build/Release/raparm-ng ~/Desktop/cprogs/RCexon ~/Desktop/cprogs/smallmap 1 out.map out.rpkm out.islands out.coverage 
+  194  raparm-ng/build/Release/raparm-ng ~/Desktop/cprogs/RCexon ~/Desktop/cprogs/smallmap 1 out.map out.rpkm out.islands out.coverage 
+  195  raparm-ng/build/Release/raparm-ng ~/Desktop/cprogs/RCexon ~/Desktop/cprogs/smallmap 1 out.map out.rpkm out.islands out.coverage 
+  196  head -n50000 smallmap > tinymap
+  197  raparm-ng/build/Release/raparm-ng RCexon tinymap 1 out.map out.rpkm out.islands out.coverage 
+  198  head -n1000 smallmap > 1kmap
+  199  raparm-ng/build/Release/raparm-ng RCexon 1kmap 1 out.map out.rpkm out.islands out.coverage 
+  200  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  201  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  202  exit
+  203  rsync -avpPu ~/Desktop/cprogs/ cig-123-151.unil.ch:~/bioperl/cprog/
+  204  cd Downloads/
+  205  ls
+  206  cd A\ Whole\ Bunch\ of\ TV\ Themes/
+  207  ll | grep ed
+  208  ll | grep Ed
+  209  open TV\ Themes\ -\ Mister\ Ed.mp3 
+  210  exit
+  211  port
+  212  sudo port selfupdate
+  213  port upgrade outdated
+  214  sudo port upgrade outdated
+  215  sudo port install ntop
+  216  fortune
+  217  exit
+  218  mv /opt /opt_old
+  219  sudo mv /opt /opt_old
+  220  top
+  221  man top
+  222  top -o cpu
+  223  exit
+  224  which port
+  225  port install ntop
+  226  sudo port selfupdate
+  227  sudo port selfupdate
+  228  sudo port install ntop
+  229  fg
+  230  ntop
+  231  port install amarok
+  232  port install amaroka
+  233  sudo port install amarok
+  234  fg
+  235  fg
+  236  exit
+  237  R
+  238  R
+  239  exit
+  240  ping 192.168.1.1
+  241  ping 192.168.0.1
+  242  ping 192.168.0.2
+  243  ping www.google.com
+  244  exit
+  245  ssh macmini.local
+  246  ssh cig-123-151.unil.ch
+  247  ssh cig-123-151.unil.ch
+  248  lynx https://reseau.unil.ch
+  249  history | grep rsync
+  250  rsync -avpP cig-123-151.unil.ch:~/bioperl/cprog/ ~/Desktop/cprogs/
+  251  rsync -avpP cig-123-151.unil.ch:~/bioperl/cprog/ ~/Desktop/cprogs/
+  252  exit
+  253  cd Desktop/DATA
+  254  LS
+  255  LL
+  256  head *
+  257  wc -l *
+  258  less short
+  259  less shorter
+  260  less idtab 
+  261  R
+  262  ls
+  263  ll
+  264  less GSE4214_family.soft 
+  265  less short
+  266  less GSE4214_family.soft 
+  267  less agilent_ids 
+  268  ping www.unibe.ch
+  269  less short
+  270  head shorter 
+  271  R
+  272  ssh cig-123-151.unil.ch
+  273  port list lbzip2
+  274  cd Downloads/
+  275  ls
+  276  tar xvf lbzip2.tar 
+  277  cd lbzip2
+  278  ls
+  279  ./configure
+  280  ./configure.sh
+  281  make
+  282  ll
+  283  lbzip2 Makefile
+  284  lbzip2 -h 
+  285  sudo port list gnubg
+  286  port
+  287  man port
+  288  port help
+  289  sudo port dependents gnubg
+  290  sudo port install gnubg
+  291  fg
+  292  cd /Volumes/Silver/_BACKUP/from\ projectree/downloads/
+  293  gzip GSE13652_RAW.tar 
+  294  bg
+  295  ll
+  296  ll GSE*
+  297  ll GSE136*
+  298  ll
+  299  ll GSE136*
+  300  ll GSE136*
+  301  ll GSE136*
+  302  ll GSE136*
+  303  ll GSE136*
+  304  ll GSE136*
+  305  ll GSE136*
+  306  ll GSE136*
+  307  rm GSE13652_RAW.tar.gz
+  308  sudo rm GSE13652_RAW.tar.gz
+  309  ll
+  310  df -m
+  311  sudo rm GSE13652_RAW.tar
+  312  df -m
+  313  exit
+  314  pico lulu
+  315  sh lulu
+  316  pico lulu 
+  317  sh lulu
+  318  exit
+  319  ssh cig-123-151.unil.ch
+  320  ll
+  321  exit
+  322  ssh CIG-3040-15823.local --execute="screen -R -D"
+  323  ssh CIG-3040-15823.local screen -R -D
+  324  ssh cig-123-151.unil.ch screen -R -D
+  325  ssh cig-123-151.unil.ch screen -R -D
+  326  ssh cig-123-151.unil.ch
+  327  exit
+  328  ssh cig-123-151.unil.ch
+  329  ssh cig-123-151.unil.ch
+  330  ssh hkdev@cig-123-199.unil.ch
+  331  exit
+  332  ssh hkdev@cig-123-199.unil.ch
+  333  ssh cig-123-151.unil.ch
+  334  ssh cig-123-151.unil.ch
+  335  cd /Volumes/WAND/
+  336  cd geco/stat/
+  337  ls
+  338  cd stat/
+  339  ls
+  340  ./configure
+  341  make
+  342  make Makefile 
+  343  less MainPage 
+  344  less Makefile 
+  345  make all
+  346  make ALL
+  347  exit
+  348  cd /Volumes/WAND/
+  349  ls
+  350  less geco/exons 
+  351  exit
+  352  cd /Volumes/WAND/cprog/geco/
+  353  ll
+  354  head rin75 
+  355  ll
+  356  exit
+  357  top -l0 | grep geco
+  358  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/scripts/ ~/Desktop/bioperl/scripts/
+  359  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/modules/ ~/Desktop/bioperl/modules/
+  360  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/ ~/Desktop/bioperl/
+  361  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/scripts/ ~/Desktop/bioperl/scripts/
+  362  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/modules/ ~/Desktop/bioperl/modules/
+  363  opne ~/Desktop/bioperl/
+  364  open ~/Desktop/bioperl/
+  365  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/modules/ ~/Desktop/bioperl/modules/
+  366  exit
+  367  cd Desktop/bioperl/
+  368  mkdir scripts
+  369  mkdir modules
+  370  ssh cig-123-151.unil.ch
+  371  cd Desktop/cprog/
+  372  ls
+  373  cd geco/
+  374  ls
+  375  ll
+  376  open geco.xcodeproj/
+  377  geco testexons testcoverage 
+  378  geco testexons testcoverage 
+  379  geco testexons testcoverage 
+  380  geco testexons testcoverage 
+  381  less caca 
+  382  geco testexons testcoverage > caca 
+  383  less caca 
+  384  geco testexons testcoverage > caca ; cat caca 
+  385  geco testexons testcoverage > caca ; cat caca 
+  386  geco exons rin75 > rin75.analysis
+  387  geco exons rin75 > rin75.analysis
+  388  time geco exons rin75 > rin75.analysis
+  389  wc -l rin75
+  390  fg;wc -l rin93
+  391  fg
+  392  grep "^281	" rin75.analysis 
+  393  time geco exons rin93 > rin93.analysis
+  394  less rin93.analysis 
+  395  cut -f5 rin93.analysis | sort-ur | head -n50 
+  396  cut -f5 rin93.analysis | sort -ur | head -n50 
+  397  cut -f5 rin75.analysis | sort -ur | head -n50 
+  398  cut -f5 rin75.analysis | sort -unr | head -n50 
+  399  cut -f5 rin93.analysis | sort -unr | head -n50 
+  400  cut -f5 rin75.analysis | sort -unr | head -n20
+  401  cut -f5 rin93.analysis | sort -unr | head -n20
+  402  sort -k5nr rin93.analysis | head -n20
+  403  sort -k5nr rin75.analysis | head -n20
+  404  sort -k5nr rin75.analysis | head -n200 | sort -k4nr | head -n20 | sort -k8n
+  405  sort -k5nr rin75.analysis | head -n200 | sort -k4nr | head -n20 | sort -k8n | cut -f8
+  406  sort -k5nr rin93.analysis | head -n200 | sort -k4nr | head -n20 | sort -k8n | cut -f8
+  407  sort -k5nr rin75.analysis | head -n200 | sort -k4nr | head -n20 | sort -k8n
+  408  grep "^5	" exons > bige
+  409  grep "^5	" rin75 > bigc
+  410  bg
+  411  open .
+  412  jobs
+  413  tar cvfz - unused/ > uus.tgz
+  414  ll
+  415  rm -rf unused/
+  416  mv uus.tgz unused_modules.tar.gz
+  417  gunzip unused_modules.tar.gz 
+  418  ll
+  419  bzip2 unused_modules.tar 
+  420  ll
+  421  geco bige bic > bigs
+  422  geco bige bigc > bigs
+  423  geco bige bigc > bigs
+  424  ll
+  425  head -n100 bige > bige.light
+  426  time geco bige.light bigc > bigs
+  427  time geco bige bigc > bigs
+  428  time geco bige bigc > bigs
+  429  time geco bige bigc > bigs
+  430  time geco bige bigc > bigs
+  431  time geco bige bigc > bigs
+  432  time geco bige bigc > bigs
+  433  time geco bige bigc > bigs
+  434  time geco bige bigc > bigs
+  435  time geco bige bigc > bigs
+  436  less bigs 
+  437  time geco bige bigc > bigs
+  438  time geco bige bigc > bigs
+  439  time geco bige bigc > bigs
+  440  time geco bige bigc > bigs
+  441  time geco bige bigc > bigs
+  442  time geco bige bigc > bigs
+  443  time geco bige bigc > bigs
+  444  time geco bige bigc > bigs
+  445  time geco exons rin75 > results
+  446  ll
+  447  geco exons rin75 > results
+  448  ll
+  449  pwd
+  450  rsync -avpPu ~/Desktop/bioperl/cprog/ cig-123-151.unil.ch:/Users/dbrawand/bioperl/cprog/
+  451  cd ~/Desktop/bioperl/
+  452  ls
+  453  ll
+  454  cd scripts/
+  455  ll
+  456  cd ../modules/
+  457  ll
+  458  rsync -avpPu ~/Desktop/bioperl/modules/ cig-123-151.unil.ch:/Users/dbrawand/bioperl/modules/
+  459  exit
+  460  exit
+  461  cd Desktop/bioperl/cprog/geco
+  462  ll *.?pp
+  463  scp geco.hpp cig-123-151.unil.ch:~
+  464  scp main.cpp cig-123-151.unil.ch:~
+  465  exit
+  466  top
+  467  exit
+  468  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/cprog/ ~/Desktop/bioperl/cprog/
+  469  rsync -avpPuz cig-123-151.unil.ch:/Users/dbrawand/bioperl/cprog/ ~/Desktop/bioperl/cprog/
+  470  cd Desktop/bioperl/cprog/geco/
+  471  ll
+  472  geco exons.1 coverage.1 > /dev/null
+  473  grep 255835 exons.1
+  474  tail coverage.1 
+  475  head -n2 exons.1
+  476  sort -k5n exons.1 | tail
+  477  geco exons.1 coverage.1 > /dev/null
+  478  tail exons.1
+  479  sort -k5n exons.1 | tail
+  480  geco exons.1 coverage.1 > /dev/null
+  481  geco exons.1 coverage.1 > /dev/null
+  482  sort -k5n exons.1 | tail
+  483  sort -k5n exons.1 | tail
+  484  geco exons.1 coverage.1 > /dev/null
+  485  tail coverage.1
+  486  time geco exons.1 coverage.1 > /dev/null
+  487  time geco exons.1 coverage.1 > /dev/null
+  488  cd ..
+  489  tar cvfz - geco/ > geko.tgz
+  490  ssh cig-123-151.unil.ch
+  491  ssh cig-123-151.unil.ch
+  492  cd Desktop/
+  493  tar cvf - bioperl/ > bp070210.tar
+  494  sudo tar cvf - bioperl/ > bp070210.tar
+  495  ll
+  496  bzip2 bp070210.tar 
+  497  bg
+  498  ll
+  499  ll
+  500  ll
+  501  cd /Volumes/WAND/cprog/geco/
+  502  ls
+  503  zcat rin93.gz | head
+  504  man zcat
+  505  gzcat rin93.gz | head
+  506  scp cig-123-151.unil.ch:~/uhts/ng/mmu/testis_495/test* .
+  507  mate test_map 
+  508  mate test_map 
+  509  exit

@@ -1,0 +1,56 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+unless(scalar(@ARGV) == 3) {
+	print STDERR "\ncoffeefilter <mapping_cutoff> <mismatch_cutoff> <N_cutoff>\n\n";
+	exit(1);
+}
+
+
+my $mapping_cutoff = shift @ARGV;
+my $mismatch_cutoff = shift @ARGV;
+my $N_cutoff = shift @ARGV;
+
+my $cnt;
+my ($id,$stratumsize,$mm,$nn);
+my $killer = 0;
+my ($killed,$accepted) = (0,0);
+while(<STDIN>) {
+	my $line = $_;
+	if ($line =~ /^(\S+)\s+\S+\s+\S+\s+\S+\s+(\d+)\s+(\S+)?/) {
+		$id = $1;
+		$stratumsize = $2;
+		($mm,$nn) = decodeMismatch($3);
+
+		if ($stratumsize > $mapping_cutoff) { $killer = $id }
+		if ($mm > $mismatch_cutoff) { $killer = $id }
+		if ($nn > $N_cutoff) { $killer = $id }
+		
+		if ($killer eq $id) {
+			++$killed;
+		}
+		else {
+			++$accepted;
+			print STDOUT $line;
+		}
+		
+	}
+	else { die }
+	if (++$cnt % 1000 == 0) {
+		print STDERR "\r $cnt $accepted $killed";
+	}
+}
+
+
+
+sub decodeMismatch {
+	my $string = $_[0];
+	unless ($string) { return (0,0) }
+	my ($m,$n) = (0,0);
+	# count mismatch
+	while ($string =~ /:/g) { $m++ }
+	# count N in reference
+	while ($string =~ />N/g) { $n++ }
+	return ($m,$n);
+}

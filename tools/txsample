@@ -1,0 +1,254 @@
+#!/usr/bin/perl -w
+
+# transcript read sampler
+#	rpkm distribution
+#	isoform distribution
+#	total reads
+#	read length
+
+
+use lib "/Library/Perl/5.10.0/darwin-thread-multi-2level/";
+use strict;
+use Getopt::Long;
+use Digest::MD5 qw(md5 md5_hex md5_base64);
+use Usu;
+use Bio::SeqIO;
+
+######
+my $prog_title = "TXsample \"Samples reads from ensembl transcript library\"";
+######
+
+Usu::header( $0, $prog_title,["Build reads from transcript library",
+								" - expression distribution",
+								" - major-minor isoforms",
+								" - sequencing errors",], "DC Brawand" );
+my ($sec,$min,$hour,$mday,$mon,$yr,$wday,$yday,$isdst)=localtime(time);
+printf STDERR "\n\tPID $$ started at %4d-%02d-%02d %02d:%02d:%02d\n\n\n", $yr+1900,$mon+1,$mday,$hour,$min,$sec;
+
+# getting options
+my ($txfile, $readlength, $readnumber, $mean, $deviation, $silentfrac, $isodiv, $sens, $quals, $phred, $nametile, $outfile, $jump) = ('','125','50000000','0.7','3.7','0.25','4','','6777777878888888888887877777777677766666666666555555555544544544444434333333333232222222212111111101000000000000/0//////....--','33','Random_txsample:1','','');
+GetOptions(	't|transcripts:s'    => \$txfile,     #
+			'l|readlength:s'     => \$readlength, #
+			'r|readnumber:s'     => \$readnumber, #
+			'm|mean:s'           => \$mean,       #
+			'd|deviation:s'      => \$deviation,  #
+			'n|silentfraction:s' => \$silentfrac, #
+			'i|isoformdivider:s' => \$isodiv,     #
+			's|sense'            => \$sens,       #
+			'e|errorstring:s'    => \$quals,      #
+			'p|phred:s'          => \$phred,      #
+			'x|nametile:s'       => \$nametile,   # name for FASTQ file header
+			'o|outfile:s'        => \$outfile,    # outfile base
+			'j|jump'             => \$jump        # jump to mutation step
+			);
+
+unless ($txfile && $outfile) { Usage() }
+
+my $out_rawseq     = $outfile . ".rawseq";
+my $out_protocol   = $outfile . ".protocol";
+my $out_reads      = $outfile . ".fq";
+my $out_expression = $outfile . ".expression";
+
+my %expression;
+my %lengths;
+
+my $seqnames = Bio::SeqIO->new(-file => $txfile, -format => 'fasta');
+my $countseq;
+my $generated_reads = $readnumber;
+
+
+goto MUTA if ($jump);
+
+open(EXPRESS, ">$out_expression") or die "Cannot write to expression file";
+# read identifyers
+while(my $seq = $seqnames->next_seq) {
+	my $transcript = $seq->display_id;
+	my $gene = ($seq->desc =~ /gene:(\S+)/) ? $1 : die;
+	++$countseq;
+	if ($seq->length >= $readlength) {
+		$expression{$gene}{$transcript} = -1;
+		$lengths{$gene}{$transcript} = $seq->length;
+	}
+	else {
+		# too small do not add but print to expression file as 0
+		print EXPRESS $gene . "\t" . $transcript . "\t" . 0 . "\n";
+	}
+}
+print "\nSEQS     " . $countseq . "\n";
+$countseq=0;
+
+
+
+# set expression levels and calculate mapped read number (to get correct total read number)
+my $rsum = 0; # e*l sum ~ Rtot
+foreach my $g (keys %expression) {
+	if (rand(1) < $silentfrac) {
+		# not expressed
+		foreach my $t (sort keys %{$expression{$g}}) {
+			$expression{$g}{$t} = 0;
+			#print STDERR "GENE $g TRANSCRIPT $t EXPRESSION " .$expression{$g}{$t}. "\n";
+		}
+	}
+	else {
+		# set expression for gene
+		my $gex = 2**gaussian_rand($mean,$deviation);
+		# get isoform expression (logaritmic)
+		my $isoform_factor = 1;
+		# write expression to file
+		foreach my $t (sort { $lengths{$g}{$b} <=> $lengths{$g}{$a} } keys %{$lengths{$g}}) {
+			$expression{$g}{$t} = $gex * $isoform_factor;
+		#	print STDERR "GENE $g TRANSCRIPT $t EXPRESSION " .$expression{$g}{$t}. "\n";
+			$rsum += $expression{$g}{$t} * $lengths{$g}{$t};
+			print EXPRESS $g . "\t" . $t . "\t" . $expression{$g}{$t} . "\n";
+			if ($isodiv) { $isoform_factor /= $isodiv }
+			else         { $isoform_factor = 0 }
+		}
+	}
+}
+close(EXPRESS);
+# mapped read factor
+my $mrf = $readnumber / $rsum;
+# generate reads
+open(RAWSEQ, ">$out_rawseq") or die "Cannot write to rawseq file";
+open(PROTOCOL, ">$out_protocol") or die "Cannot write to protocol file";
+my $seqread = Bio::SeqIO->new(-file => $txfile, -format => 'fasta');
+# read identifyers
+$generated_reads = 0; # reset to do a real count
+while(my $seq = $seqread->next_seq) {
+	print STDERR "\rSWAMPLED " . ++$countseq . " ";
+	my $transcript = $seq->display_id;
+	my $gene = ($seq->desc =~ /gene:(\S+)/) ? $1 : die;
+	# get read number to sample
+	if ($expression{$gene}{$transcript} && $expression{$gene}{$transcript} > 0) {
+		# floored read count
+		my $rnum = int(0.5+($expression{$gene}{$transcript} * $seq->length * $mrf));
+		print PROTOCOL "$gene\t$transcript\t$expression{$gene}{$transcript}\t$rnum\t$readnumber\t". $seq->length . "\n";
+		# sample reads
+		for (my $i = 0; $i < $rnum; ++$i) {
+			# sample
+			my $offset = int(rand($seq->length - $readlength + 1));
+			# decide if reverse and write to readfile
+			if ( !($sens) && (0.5 < rand()) ) {
+				print RAWSEQ $seq->revcom->subseq($offset+1,$offset+$readlength) . "\n";
+			}
+			else {
+				print RAWSEQ $seq->subseq($offset+1,$offset+$readlength) ."\n";
+			}
+			++$generated_reads;
+		}
+	}
+}
+close(PROTOCOL);
+close(RAWSEQ);
+
+
+# mutate and write fastq file
+
+MUTA:
+my $line;
+my $x = 1;
+my $y = 0;
+my $t = 1;
+my $pertile = $generated_reads / 120; # assume 120 tiles
+my $thistile;
+my $max_coord = sqrt($pertile);
+
+open(RIN, "<$out_rawseq") or die "Cannot read from rawseq file";
+open(ROUT, ">$out_reads") or die "Cannot write to fastq file";
+while (<RIN>) {
+	print "\r$line" if (++$line % 1000 == 0);
+	if (/(\S{$readlength})/) {
+		if (++$thistile > $pertile) { ++$t; $thistile = 0; $y = 0; $x = 1 }
+		if ($y > $max_coord) { $y = 0; ++$x }
+		print ROUT "@" . $nametile . ":" . $t . ":" . $x . ":" . ++$y . "\n";
+		print ROUT mutate($1, $quals, $phred) . "\n";
+		print ROUT "+\n";
+		print ROUT substr($quals,0,$readlength) . "\n";
+		
+	#	@Ibis_Run101104_C3PO:4:1:1468:1011
+	#	NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+	#	+
+	#	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+	}
+	else {
+		warn "\nWARNING: cannot parse line =>".$_."<=\n";
+	}
+}
+close(ROUT);
+close(RIN);
+
+####################################################################################################
+### C FUNCTIONS ####################################################################################
+####################################################################################################
+use Inline C => Config => AUTO_INCLUDE => '#include <math.h>';
+use Inline C => <<'END_C';
+
+char* mutate(char* s, char* q, int phred) {
+	int i;
+	char bases[] = "ATCG";
+	//srand((unsigned)time( NULL ));
+	for(i = 0; i < strlen(s); i++) {
+		double mproba = pow((double)10, (double) -( q[i] - phred )/10);
+		double randnum = (double) rand() / RAND_MAX;
+		if (mproba > randnum) {
+			//mutate
+			// draw a random base
+			char newbase;
+			do {
+				newbase = bases[rand()%4];
+			} while (s[i] == newbase);
+			s[i] = newbase;
+		}
+	}
+	return s;
+}
+
+END_C
+
+#############################################################
+### SUBS ####################################################
+#############################################################
+sub gaussian_rand {
+	my $mean = $_[0];
+	my $sd   = $_[1];
+	
+	
+    my ($u1, $u2);  # uniformly distributed random numbers
+    my $w;          # variance, then a weight
+    my ($g1, $g2);  # gaussian-distributed numbers
+
+    do {
+        $u1 = 2 * rand() - 1;
+        $u2 = 2 * rand() - 1;
+        $w = $u1*$u1 + $u2*$u2;
+    } while ( $w >= 1 );
+
+    $w = sqrt( (-2 * log($w))  / $w );
+    $g2 = $u1 * $w;
+    $g1 = $u2 * $w;
+    # return both if wanted, else just one
+    #return wantarray ? ($g1, $g2) : $g1;
+    return ($g1*$sd)+$mean;
+}
+
+sub Usage {
+	Usu::usage($prog_title,["",
+	"-t <TRANSCRIPT FILE>",
+	"-o <OUTFILE>",
+	"",
+	"-l <readlength>                [$readlength]",
+	"-r <approximate readnumber>    [$readnumber]",
+	"-m <expression mean>           [$mean]",
+	"-d <expression stddev>         [$deviation]",
+	"-n <fraction of silent genes>  [$silentfrac]",
+	"-i <isoform log base>          [$isodiv]",
+	"-p <phred base>                [$phred]",
+	"-e <quality string>            [$quals]",
+	"-s <sense reads only>          [OFF]",
+	"-x <machine name and lane>     [$nametile]",
+	"-j <jump to mutation step>     [OFF]",
+	""]);
+	exit(0);
+}
+

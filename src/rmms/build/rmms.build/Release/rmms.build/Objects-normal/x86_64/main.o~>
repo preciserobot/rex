@@ -1,0 +1,74 @@
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:35:21: error: rm-ms.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp: In function 'int main(int, char**)':
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:75: error: 'MAXTAG' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:76: error: size of array 'tags' is not an integral constant-expression
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:79: error: 'Exon' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:79: error: 'exons' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:79: error: expected type-specifier before 'Exon'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:79: error: expected `;' before 'Exon'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:80: error: 'Read' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:80: error: 'reads' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:80: error: expected type-specifier before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:80: error: expected `;' before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:81: error: 'Region' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:81: error: 'regions' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:81: error: expected type-specifier before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:81: error: expected `;' before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:102: error: 'map' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:102: error: expected primary-expression before 'int'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:102: error: expected `;' before 'int'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:119: error: 'exonsPerGene' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:120: error: 'maxexon' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:125: error: expected primary-expression before 'int'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:125: error: expected `;' before 'int'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:125: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:141: error: expected type-specifier before 'Exon'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:141: error: expected `;' before 'Exon'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:159: error: expected type-specifier before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:159: error: expected `;' before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:186: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:187: error: 'simpleset' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:187: error: expected `;' before 'regionids'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:189: error: type '<type error>' argument given to 'delete', expected pointer
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:190: error: expected type-specifier before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:190: error: expected `;' before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:218: error: expected type-specifier before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:218: error: expected `;' before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:234: error: 'splicemap' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:234: error: expected `;' before 'spm'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:244: error: 'spm' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:245: error: expected type-specifier before 'Splice'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:245: error: expected `;' before 'Splice'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:247: error: 'spm' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:268: error: expected type-specifier before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:268: error: expected `;' before 'Read'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:273: error: 'spm' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:289: error: 'simpleset' is not a class or namespace
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:289: error: expected `;' before 'it'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:289: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:289: error: 'regionids' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:295: error: expected type-specifier before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:295: error: expected `;' before 'Region'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:699: error: 'covmap' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:699: error: expected `;' before 'it'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:699: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:716: error: 'covmap' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:716: error: expected `;' before 'it'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:716: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:749: error: 'covmap' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:749: error: expected `;' before 'it'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:749: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:766: error: 'covmap' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:766: error: expected `;' before 'it'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:766: error: 'it' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:793: error: 'intdoublemap' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:793: error: expected `;' before 'splicefreq'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:805: error: 'sameStrand' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:806: error: 'intvec' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:806: error: 'ii' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:808: error: 'splicefreq' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:809: error: type '<type error>' argument given to 'delete', expected pointer
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:819: error: 'intdoublemap' is not a class or namespace
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:819: error: expected `;' before 'sf'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:819: error: 'sf' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:819: error: 'splicefreq' was not declared in this scope

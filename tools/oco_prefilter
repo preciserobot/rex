@@ -1,0 +1,45 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $pairfile = shift @ARGV;
+my %prefix;
+
+my $lpf;
+my ($kept,$dropped) = (0,0);
+while(my $pf = shift @ARGV) { 
+	if (!($lpf)) {
+		$lpf = length($pf);
+	}
+	if (length($pf) != $lpf) {
+		die "prefixes must have same length";
+	}
+	++$prefix{$pf};
+}
+foreach my $p (keys %prefix) {
+	print STDERR "$p\n";
+}
+
+open(PAIRS, "<$pairfile") or die "Cannot open $pairfile";
+while(<PAIRS>) {
+	if (/^(\S+)\s+(\S+)$/) {
+		my $l = $1;
+		my $r = $2;
+		if ($prefix{substr($l,0,$lpf)} && $prefix{substr($r,0,$lpf)}) {
+			print STDOUT "$l\t$r\n";
+			++$prefix{substr($l,0,$lpf)};
+			++$prefix{substr($r,0,$lpf)};
+			++$kept;
+		}
+		else {
+			++$dropped;
+		}
+	}
+	else {die}
+	print STDERR "\r$kept\t$dropped";
+}
+close(PAIRS);
+print STDERR "\n";
+foreach my $p (keys %prefix) {
+	print STDERR $p . "\t" . --$prefix{$p} . "\n";
+}

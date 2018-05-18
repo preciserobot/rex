@@ -1,0 +1,70 @@
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:13:48: error: boost/progress.hpp: No such file or directory
+In file included from /Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:20,
+                 from /Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:35:
+/Volumes/FatBob/uhts/rex/bin/src/rmms/universe.hpp:23:42: error: boost/graph/adjacency_list.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/rmms/universe.hpp:24:43: error: boost/pending/disjoint_sets.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/rmms/universe.hpp:25:51: error: boost/graph/incremental_components.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/rmms/universe.hpp:26:40: error: boost/graph/graph_traits.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/rmms/universe.hpp:27:48: error: boost/graph/connected_components.hpp: No such file or directory
+In file included from /Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:35:
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp: In member function 'int Read::unify(bool)':
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:207: error: 'boost' is not a namespace-name
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:207: error: expected namespace-name before ';' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:208: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:211: error: 'Graph' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:211: error: expected `;' before 'G'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:215: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:215: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:221: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:221: error: 'num_vertices' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:222: error: 'connected_components' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:259: error: expected `;' before 'H'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:262: error: 'H' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:262: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:265: error: 'H' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp: In member function 'int Region::connectIslands()':
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:495: error: 'boost' is not a namespace-name
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:495: error: expected namespace-name before ';' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:496: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:497: error: 'Graph' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:497: error: expected `;' before 'G'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:502: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:502: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:505: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:505: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:509: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:509: error: 'num_vertices' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:510: error: 'connected_components' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp: In member function 'void Island::runTests()':
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:668: error: 'boost' is not a namespace-name
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:668: error: expected namespace-name before ';' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:669: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:670: error: 'Graph' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:670: error: expected `;' before 'G'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:674: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:674: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:678: error: 'G' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:678: error: 'num_vertices' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/raparm-ms.hpp:679: error: 'connected_components' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp: In function 'int main(int, char**)':
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:424: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:424: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:426: error: 'show_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:571: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:571: error: expected `;' before 'cov_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:573: error: 'cov_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:594: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:594: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:596: error: 'show_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:648: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:648: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:650: error: 'show_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:680: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:680: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:682: error: 'show_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:735: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:735: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:737: error: 'show_progress' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:785: error: 'boost' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:785: error: expected `;' before 'show_progress'
+/Volumes/FatBob/uhts/rex/bin/src/rmms/main.cpp:787: error: 'show_progress' was not declared in this scope

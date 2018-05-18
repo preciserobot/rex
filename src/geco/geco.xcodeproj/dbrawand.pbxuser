@@ -1,0 +1,227 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 5D34EBB01119C51D008EC8A0 /* geco */;
+		activeTarget = 8DD76F620486A84900D96B5E /* geco */;
+		addToTargets = (
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 5D34EBB71119C530008EC8A0 /* Code sense */;
+		executables = (
+			5D34EBB01119C51D008EC8A0 /* geco */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					867,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1170,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1130,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 314703878;
+			PBXWorkspaceStateSaveDate = 314703878;
+		};
+		perUserProjectItems = {
+			5D35A2E112C1FF94002582A8 /* PBXTextBookmark */ = 5D35A2E112C1FF94002582A8 /* PBXTextBookmark */;
+			5D35A2EA12C200FD002582A8 /* PBXTextBookmark */ = 5D35A2EA12C200FD002582A8 /* PBXTextBookmark */;
+			5D35A2EB12C200FD002582A8 /* PBXTextBookmark */ = 5D35A2EB12C200FD002582A8 /* PBXTextBookmark */;
+			5D35A2EC12C200FD002582A8 /* PBXTextBookmark */ = 5D35A2EC12C200FD002582A8 /* PBXTextBookmark */;
+			5D35A2EF12C200FD002582A8 /* PBXTextBookmark */ = 5D35A2EF12C200FD002582A8 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 5D34EBB61119C530008EC8A0 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1348, 2556}}";
+			sepNavSelRange = "{1162, 0}";
+			sepNavVisRange = "{0, 1846}";
+			sepNavWindowFrame = "{{51, 174}, {1155, 805}}";
+		};
+	};
+	5D34EBB01119C51D008EC8A0 /* geco */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+			YES,
+			YES,
+		);
+		argumentStrings = (
+			exons,
+			rin75,
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+			"PBXLSLaunchAction-0" = {
+				PBXLSLaunchAction = 0;
+				PBXLSLaunchStartAction = 1;
+				PBXLSLaunchStdioStyle = 2;
+				PBXLSLaunchStyle = 0;
+				class = PBXLSRunLaunchConfig;
+				commandLineArgs = (
+				);
+				displayName = "Executable Runner";
+				environment = {
+				};
+				identifier = com.apple.Xcode.launch.runConfig;
+				remoteHostInfo = "";
+				startActionInfo = "";
+			};
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = geco;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		startupPath = "<<ProjectDirectory>>";
+		variableFormatDictionary = {
+		};
+	};
+	5D34EBB51119C530008EC8A0 /* geco.hpp */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1545, 760}\";\n            s = 0;\n        },\n                {\n            r = \"{2921, 751}\";\n            s = 0;\n        },\n                {\n            r = \"{3690, 523}\";\n            s = 0;\n        },\n                {\n            r = \"{8364, 129}\";\n            s = 0;\n        },\n                {\n            r = \"{8510, 155}\";\n            s = 0;\n        },\n                {\n            r = \"{8695, 26}\";\n            s = 0;\n        },\n                {\n            r = \"{9524, 312}\";\n            s = 0;\n        },\n                {\n            r = \"{10722, 97}\";\n            s = 0;\n        },\n                {\n            r = \"{11749, 231}\";\n            s = 0;\n        },\n                {\n            r = \"{12032, 584}\";\n            s = 0;\n        },\n                {\n            r = \"{15197, 48}\";\n            s = 0;\n        },\n                {\n            r = \"{15282, 46}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 15330}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1092, 4619}}";
+			sepNavSelRange = "{10919, 0}";
+			sepNavVisRange = "{5661, 2418}";
+			sepNavWindowFrame = "{{136, 54}, {1022, 1124}}";
+		};
+	};
+	5D34EBB61119C530008EC8A0 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	5D34EBB71119C530008EC8A0 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	5D35A2E112C1FF94002582A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5D34EBB51119C530008EC8A0 /* geco.hpp */;
+		name = "geco.hpp: 535";
+		rLen = 0;
+		rLoc = 14477;
+		rType = 0;
+		vrLen = 3109;
+		vrLoc = 7715;
+	};
+	5D35A2EA12C200FD002582A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5D34EBB51119C530008EC8A0 /* geco.hpp */;
+		name = "geco.hpp: 22";
+		rLen = 0;
+		rLoc = 384;
+		rType = 0;
+		vrLen = 2545;
+		vrLoc = 0;
+	};
+	5D35A2EB12C200FD002582A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		name = "main.cpp: 68";
+		rLen = 0;
+		rLoc = 2485;
+		rType = 0;
+		vrLen = 2176;
+		vrLoc = 5845;
+	};
+	5D35A2EC12C200FD002582A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		name = "main.cpp: 35";
+		rLen = 0;
+		rLoc = 1162;
+		rType = 0;
+		vrLen = 1846;
+		vrLoc = 0;
+	};
+	5D35A2EF12C200FD002582A8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5D34EBB51119C530008EC8A0 /* geco.hpp */;
+		name = "geco.hpp: 535";
+		rLen = 0;
+		rLoc = 14477;
+		rType = 0;
+		vrLen = 3132;
+		vrLoc = 7692;
+	};
+	8DD76F620486A84900D96B5E /* geco */ = {
+		activeExec = 0;
+		executables = (
+			5D34EBB01119C51D008EC8A0 /* geco */,
+		);
+	};
+}

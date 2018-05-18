@@ -1,0 +1,51 @@
+#!/usr/bin/perl -w
+
+use strict;
+use DBD::mysql;
+my $loadfile  = shift @ARGV;
+my $table = shift @ARGV;
+
+my $cleanfile = $loadfile . ".clean";
+my $exec = 'sed \'s/NA/\\\N/g\' ' . $loadfile . ' > ' . $cleanfile;
+print STDERR "\n$exec\n";
+system($exec);
+$loadfile = $cleanfile;
+
+# decipher header fields and create statement
+open(FIN, "<$loadfile") or die;
+my $header = <FIN>;
+close(FIN);
+chomp($header);
+my @fields = split /\t/,$header;
+my $field_defs = "(";
+for(my $i=0; $i < scalar(@fields); ++$i) {
+	if ($i==0) {
+		$field_defs .= $fields[$i] . " CHAR(32) PRIMARY KEY";
+	}
+	else {
+		$field_defs .= $fields[$i] . " DOUBLE";
+	}
+	if ($i<(scalar(@fields)-1)) {
+		$field_defs .= ", ";
+	}
+	else {
+		$field_defs .= ");";
+	}
+}
+
+#SQL EXEC
+my $drop   = "DROP TABLE IF EXISTS $table";
+my $create = "CREATE TABLE $table $field_defs"; 
+my $load   = "LOAD DATA LOCAL INFILE \"$loadfile\" INTO TABLE $table IGNORE 1 LINES";
+
+my $sqldb   = "rex";
+my $sqlhost = "hkserv.local";
+my $sqluser = "dbrawand";
+my $sqlport = 3306;
+
+my $dbh = DBI->connect("DBI:mysql:$sqldb:$sqlhost:$sqlport","$sqluser","") or die "Database connection not made: $DBI::errstr"; 
+print STDERR "### SQL ### $drop\n";   $dbh->prepare( $drop   )->execute() or die "Couldn't execute statement ($drop)!";
+print STDERR "### SQL ### $create\n"; $dbh->prepare( $create )->execute() or die "Couldn't execute statement ($create)!";
+print STDERR "### SQL ### $load\n";   $dbh->prepare( $load   )->execute() or die "Couldn't execute statement ($load)!";
+$dbh->disconnect();
+#print STDERR "$create\n$load\n";

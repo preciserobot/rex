@@ -1,0 +1,65 @@
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:12:42: error: boost/graph/adjacency_list.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:13:43: error: boost/pending/disjoint_sets.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:14:51: error: boost/graph/incremental_components.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:15:40: error: boost/graph/graph_traits.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:16:48: error: boost/graph/connected_components.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:17:42: error: boost/graph/filtered_graph.hpp: No such file or directory
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:24: error: expected constructor, destructor, or type conversion before '(' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:28: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:29: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:30: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:31: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp: In function 'int main(int, char**)':
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:64: error: 'GeneID' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:64: error: expected `;' before 'ids'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:65: error: 'invGeneID' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:65: error: expected `;' before 'name'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:69: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:71: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:72: error: expected initializer before '<' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:74: error: 'graph_traits' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:74: error: 'Graph' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:74: error: '::vertex_iterator' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:74: error: expected `;' before 'vi'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:75: error: '::out_edge_iterator' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:75: error: expected `;' before 'oei'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:76: error: 'FilteredGraph' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:76: error: '::vertex_iterator' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:76: error: expected `;' before 'fvi'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:77: error: '::out_edge_iterator' has not been declared
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:77: error: expected `;' before 'foei'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:79: error: 'g' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:80: error: 'fg' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:82: error: expected type-specifier before 'Graph'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:82: error: expected `;' before 'Graph'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:102: error: 'ids' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:104: error: 'name' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:106: error: 'ids' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:108: error: 'name' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:111: error: 'ids' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:111: error: 'add_edge' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:135: error: 'get' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:135: error: 'connected_components' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:148: error: 'keep_all' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:148: error: expected `;' before 'efilter'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:149: error: 'ComponentMap' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:149: error: template argument 1 is invalid
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:149: error: invalid type in declaration before '(' token
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:149: error: initializer expression list treated as compound expression
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:150: error: expected type-specifier before 'FilteredGraph'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:150: error: expected `;' before 'FilteredGraph'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:156: error: 'fvi' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:156: error: 'fvi_end' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:156: error: 'tie' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:156: error: 'vertices' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:158: error: 'foei' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:158: error: 'foei_end' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:158: error: 'out_edges' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:165: error: 'stringstring' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:165: error: expected `;' before 'orderedGenes'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:168: error: 'orderedGenes' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:168: error: 'name' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:174: error: 'orderedGenes' was not declared in this scope
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:235: error: type '<type error>' argument given to 'delete', expected pointer
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:149: warning: unused variable 'vfilter'
+/Volumes/FatBob/uhts/rex/bin/src/croc/main.cpp:367: error: type '<type error>' argument given to 'delete', expected pointer

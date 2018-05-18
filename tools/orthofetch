@@ -1,0 +1,137 @@
+#!/usr/bin/perl -w
+
+
+=pod
+ens --quick ensembl_compara_57 --execute="select homology_id from homology where description = \"ortholog_one2one\"" > all_homology_one2one
+ens --quick ensembl_compara_57 --execute="select aa.stable_id, a.member_id, a.homology_id, b.member_id, bb.stable_id from homology_member as a, homology_member as b, member as aa, member as bb where aa.member_id = a.member_id and bb.member_id = b.member_id and a.homology_id = b.homology_id and a.member_id < b.member_id" > all_memberpairs
+orthofetch all_memberpairs all_homology_one2one > e57_pairs
+~/rex/bin/src/oco/build/Release/oco e57_pairs | cut -f2-10 > e57_clusters
+DROP TABLE o57strict;
+create table o57strict (gga CHAR(32), oan CHAR(32), mdo CHAR(32), mmu CHAR(32), mml CHAR(32), ppy CHAR(32), ggo CHAR(32), ptr CHAR(32), hsa CHAR(32), INDEX (gga), INDEX (oan), INDEX (mdo), INDEX (mmu), INDEX (mml), INDEX (ppy), INDEX (ggo), INDEX (ptr), INDEX (hsa));
+load data local infile "/Volumes/Storage/e57_clusters" INTO table o57strict ignore 1 lines (hsa,gga,ggo,mml,mdo,mmu,oan,ppy,ptr);
+
+create table o57primates (mml CHAR(32), ppy CHAR(32), ggo CHAR(32), ptr CHAR(32), hsa CHAR(32), INDEX (mml), INDEX (ppy), INDEX (ggo), INDEX (ptr), INDEX (hsa));
+load data local infile "/Volumes/FatBob/ortho_cluster/out2.clusters" INTO table o57primates ignore 1 lines (hsa,ggo,mml,ppy,ptr);
+
+
+create table add_gga_o57strict select g.stable_id from gene_stable_id_gga57_40be80ce as g left join o57strict as o on g.stable_id = o.gga where o.gga IS NULL;
+create table add_oan_o57strict select g.stable_id from gene_stable_id_oan57_68967026 as g left join o57strict as o on g.stable_id = o.oan where o.oan IS NULL;
+create table add_mdo_o57strict select g.stable_id from gene_stable_id_mdo57_a369f63c as g left join o57strict as o on g.stable_id = o.mdo where o.mdo IS NULL;
+create table add_mmu_o57strict select g.stable_id from gene_stable_id_mmu57_8bbb7d54 as g left join o57strict as o on g.stable_id = o.mmu where o.mmu IS NULL;
+create table add_mml_o57strict select g.stable_id from gene_stable_id_mml57_2423888e as g left join o57strict as o on g.stable_id = o.mml where o.mml IS NULL;
+create table add_ppy_o57strict select g.stable_id from gene_stable_id_ppy57_fa657927 as g left join o57strict as o on g.stable_id = o.ppy where o.ppy IS NULL;
+create table add_ggo_o57strict select g.stable_id from gene_stable_id_ggo57_cc6df457 as g left join o57strict as o on g.stable_id = o.ggo where o.ggo IS NULL;
+create table add_ptr_o57strict select g.stable_id from gene_stable_id_ptr57_3313b80f as g left join o57strict as o on g.stable_id = o.ptr where o.ptr IS NULL;
+create table add_hsa_o57strict select g.stable_id from gene_stable_id_hsa57_0712fb63 as g left join o57strict as o on g.stable_id = o.hsa where o.hsa IS NULL;
+
+insert into o57strict (gga) select * from add_gga_o57strict;
+insert into o57strict (oan) select * from add_oan_o57strict;
+insert into o57strict (mdo) select * from add_mdo_o57strict;
+insert into o57strict (mmu) select * from add_mmu_o57strict;
+insert into o57strict (mml) select * from add_mml_o57strict;
+insert into o57strict (ppy) select * from add_ppy_o57strict;
+insert into o57strict (ggo) select * from add_ggo_o57strict;
+insert into o57strict (ptr) select * from add_ptr_o57strict;
+insert into o57strict (hsa) select * from add_hsa_o57strict;
+
+CREATE TABLE orthology57strict (ortho_id INT AUTO_INCREMENT PRIMARY KEY, gga CHAR(32), oan CHAR(32), mdo CHAR(32), mmu CHAR(32), mml CHAR(32), ppy CHAR(32), ggo CHAR(32), ptr CHAR(32), hsa CHAR(32), gga_id INT, oan_id INT, mdo_id INT, mmu_id INT, mml_id INT, ppy_id INT, ggo_id INT, ptr_id INT, hsa_id INT,
+INDEX (gga), INDEX (gga_id),
+INDEX (oan), INDEX (oan_id),
+INDEX (mdo), INDEX (mdo_id),
+INDEX (mmu), INDEX (mmu_id),
+INDEX (mml), INDEX (mml_id),
+INDEX (ggo), INDEX (ppy_id),
+INDEX (ppy), INDEX (ggo_id),
+INDEX (ptr), INDEX (ptr_id),
+INDEX (hsa), INDEX (hsa_id));
+
+INSERT INTO orthology57strict (gga,oan,mdo,mmu,mml,ppy,ggo,ptr,hsa,gga_id,oan_id,mdo_id,mmu_id,mml_id,ppy_id,ggo_id,ptr_id,hsa_id)
+SELECT o.gga, o.oan, o.mdo, o.mmu, o.mml, o.ppy, o.ggo, o.ptr, o.hsa,
+a.gene_id, b.gene_id, c.gene_id, d.gene_id, e.gene_id, f.gene_id, g.gene_id, h.gene_id, i.gene_id FROM
+o57strict as o 
+LEFT JOIN gene_stable_id_gga57_40be80ce as a ON o.gga = a.stable_id 
+LEFT JOIN gene_stable_id_oan57_68967026 as b ON o.oan = b.stable_id
+LEFT JOIN gene_stable_id_mdo57_a369f63c as c ON o.mdo = c.stable_id
+LEFT JOIN gene_stable_id_mmu57_8bbb7d54 as d ON o.mmu = d.stable_id
+LEFT JOIN gene_stable_id_mml57_2423888e as e ON o.mml = e.stable_id
+LEFT JOIN gene_stable_id_ppy57_fa657927 as f ON o.ppy = f.stable_id
+LEFT JOIN gene_stable_id_ggo57_cc6df457 as g ON o.ggo = g.stable_id
+LEFT JOIN gene_stable_id_ptr57_3313b80f as h ON o.ptr = h.stable_id
+LEFT JOIN gene_stable_id_hsa57_0712fb63 as i ON o.hsa = i.stable_id;
+
+
+=cut
+
+use strict;
+
+my $maxdepth = 10;
+
+die "Need 3 args <PAIRS> <HOMOLOGYIDS> > STDOUT" if (scalar(@ARGV) != 2);
+
+my $ofile = shift @ARGV;
+my $hfile = shift @ARGV;
+my %o;
+
+my %pairs;
+
+my $spe = {
+	ENSPTRG0 => 1,
+	ENSG0 => 1,
+	ENSGGOG0 => 1,
+	ENSPPYG0 => 1,
+	ENSMMUG0 => 1,
+	ENSMUSG0 => 1,
+	ENSMODG0 => 1,
+	ENSOANG0 => 1,
+	ENSGALG0 => 1,
+};
+
+my ($li,$ac);
+
+my %h;
+open(HIN, "<$hfile") or die;
+while(<HIN>) {
+	if (/^(\d+)/) {
+		$h{$1}++;
+		print STDERR "\r" . ++$li . "   ";
+	}
+}
+close(HIN);
+print STDERR "\n";
+$li = 0;
+
+
+open(OFI, "<$ofile") or die;
+while(<OFI>) {
+	if (/(\w+)\s+\S+\s+(\S+)\s+\S+\s+(\w+)/) {
+		unless ($h{$2}) { next } # skip if not a one2one
+		my $s1 = $1;
+		my $s3 = $3;
+		my $s1s = ($s1 =~ /^(\D+\d)/) ? $1 : $s1;
+		my $s3s = ($s3 =~ /^(\D+\d)/) ? $1 : $s3;
+		print STDERR "\r" . ++$li . "   ";
+		next unless ($spe->{$s1s} && $spe->{$s3s}); # only keep relation if both involved species are requested (see above anonymous hash)
+		print STDOUT "$s1\t$s3\n";
+		
+		print STDERR ++$ac;
+		if ($o{$s1}) { push @{$o{$s1}}, $s3 }
+		else         { $o{$s1} = [ $s3 ] }
+		if ($o{$s3}) { push @{$o{$s3}}, $s1 }
+		else         { $o{$s3} = [ $s1 ] }
+		++$pairs{$s3 . $s1};
+		++$pairs{$s1 . $s3};
+	}
+}
+close(OFI);
+
+=END
+to insert non ortho genes
+insert into o53 (gga) select g.stable_id from gene_stable_id_gga53 as g left join o53 as o on g.stable_id = o.gga where o.gga is NULL and g.stable_id like "ENS%";
+insert into o53 (oan) select g.stable_id from gene_stable_id_oan52 as g left join o53 as o on g.stable_id = o.oan where o.oan is NULL and g.stable_id like "ENS%";
+insert into o53 (mdo) select g.stable_id from gene_stable_id_mdo52 as g left join o53 as o on g.stable_id = o.mdo where o.mdo is NULL and g.stable_id like "ENS%";
+insert into o53 (bta) select g.stable_id from gene_stable_id_bta53 as g left join o53 as o on g.stable_id = o.bta where o.bta is NULL and g.stable_id like "ENS%";
+insert into o53 (mmu) select g.stable_id from gene_stable_id_mmu53 as g left join o53 as o on g.stable_id = o.mmu where o.mmu is NULL and g.stable_id like "ENS%";
+insert into o53 (mml) select g.stable_id from gene_stable_id_mml53 as g left join o53 as o on g.stable_id = o.mml where o.mml is NULL and g.stable_id like "ENS%";
+insert into o53 (hsa) select g.stable_id from gene_stable_id_hsa54 as g left join o53 as o on g.stable_id = o.hsa where o.hsa is NULL and g.stable_id like "ENS%";
+
+update o53 set mml = NULL where mml = "";

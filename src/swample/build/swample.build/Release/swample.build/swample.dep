@@ -1,0 +1,8 @@
+00000000060bf09b0000000000005f7d bce923a27dc52e53bd6b163b3dfd371c ffffffffffffffffffffffffffffffff 132280 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/main.o
+00000000060bf09b0000000000005f7d 3b66cf5a197415dfc27589db6526a57a ffffffffffffffffffffffffffffffff 131200 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/main.o
+00000000060bf09b0000000000005f7d 6e550a3bb8b892b0000889edb10b5512 ffffffffffffffffffffffffffffffff 135900 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/main.o
+00000000000000000000000000000000 80d4bf1fa59ec833769f1198942c44b6 ffffffffffffffffffffffffffffffff 136 /Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample.dSYM
+9f5cd5848ce3cbc4b03f2b48f0d86334 2c723db2149b34a438bc339a7df8b9dc ffffffffffffffffffffffffffffffff 62884 /Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample
+bce923a231b84363bd6b163b3dfd688f 8049c539e2faa500147042a5cdbdb519 ffffffffffffffffffffffffffffffff 17828 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/swample
+3b66cf5a550978efc27589db6526fae9 6dd8ea4e8c2487789648dadcb2451958 ffffffffffffffffffffffffffffffff 19260 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/swample
+6e550a3bf4c5ff80000889edb10b0a81 9b171c3072492db04d11a53c66f05792 ffffffffffffffffffffffffffffffff 19712 /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/swample

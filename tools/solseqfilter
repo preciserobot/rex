@@ -1,0 +1,60 @@
+#!/usr/bin/perl -w
+
+# filters sequences according to report file from solexpocheck
+
+use strict;
+
+my $infile  = shift @ARGV;
+my $report  = shift @ARGV;
+my $cutoff  = shift @ARGV;
+my $outfile = $infile . '.goodtiles';
+
+$cutoff = ($cutoff && ($cutoff =~ /(\d+)/)) ? $1 : 50;
+print STDERR "Cutoff set a $cutoff\n";
+# i/o
+open(SEQ, "<$infile") or die "Sequence file not found";
+open(REP, "<$report") or die "Report file not found";
+
+my $drops = [];
+my $badtiles = 0;
+while (<REP>) {
+	if (/(\d+)\s+\d+\s+\d+\s+\d+\s+\d+\s+(\d+)/) {
+#        TILE                            DROP
+		$drops->[$1] = $2;
+		if ($2 <= $cutoff) { $badtiles++ }
+	}
+	else { die "unrecognized line" }
+}
+close(REP);
+
+my ($printflag, $printed, $unprinted) = (0,0,0);
+my $breaker;
+
+# check if filtering needed
+if ($badtiles) {
+	open(SEQO, ">$outfile") or die "Sequence output not writeable";
+}
+else {
+	print STDERR "No filtering needed\nLinking original file\n";
+	exec("ln -s $infile $outfile");
+}
+
+# FILTERING SEQUENCES
+while (<SEQ>) {
+	my $line = $_;
+	if (/^@[^\:]+\:\d+\:(\d+)\:\d+\:\d+/) {
+		# +HWI-EAS290:7:1:41:1031#0/1
+		if ($drops->[$1] >= $cutoff ) { $printflag = 1; $printed++   } # okay for print
+		else                          { $printflag = 0; $unprinted++ } # below cutoff
+	}
+	print STDERR "\r" . $printed . "\t" . $unprinted;
+	if ($printflag) { print SEQO $line }
+}
+print STDERR "\n\n";
+print STDERR "Accepted reads " . $printed . "\n";
+print STDERR "Rejected reads " . $unprinted . "\n";
+print STDERR "   Total reads " . ($printed + $unprinted) . "\n";
+
+
+close(SEQ);
+close(SEQO);

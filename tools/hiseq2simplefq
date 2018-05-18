@@ -1,0 +1,74 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $length = shift @ARGV;
+
+#tile translation table
+my $tt = {
+	"1101" => 0,
+	"1102" => 3,
+	"1103" => 6,
+	"1104" => 9,
+	1105 => 12,
+	1106 => 15,
+	1107 => 18,
+	1108 => 21,
+	1201 => 24,
+	1202 => 27,
+	1203 => 30,
+	1204 => 33,
+	1205 => 36,
+	1206 => 39,
+	1207 => 42,
+	1208 => 45,
+	2101 => 48,
+	2102 => 51,
+	2103 => 54,
+	2104 => 57,
+	2105 => 60,
+	2106 => 63,
+	2107 => 66,
+	2108 => 69,
+	2201 => 72,
+	2202 => 75,
+	2203 => 78,
+	2204 => 81,
+	2205 => 84,
+	2206 => 87,
+	2207 => 90,
+	2208 => 93
+};
+# + int(/10000) + 1
+# die if > 29999
+
+my $sep = 10000;
+my $seqwrt = 1;
+my $line;
+while (<STDIN>) {
+	# convert tile
+	# cut barcode
+	# remove quality header
+	# convert quality
+	print STDERR "\r$line" if (++$line % 10000 == 0);
+	my $chp = $_;
+	chomp($chp);
+	if    (($chp =~ /^(A|T|G|C|N){$length}$/) && ($seqwrt == 2))   { ++$seqwrt; print $chp . "\n" } #SEQ
+	elsif (($chp =~ /^[^\s]{$length}$/) && ($seqwrt == 4))         { $seqwrt=1; print $chp . "\n" } #QUAL
+	elsif (($chp =~ /^@([^:]+:[^:]+:)([^:]+):([^:]+)(:\d+)/) && ($seqwrt == 1)) { ++$seqwrt; die if ($3 >= 3*$sep);
+		print "@" . $1 . ($tt->{$2} + int($3/$sep) + 1) . ":" . ($3 % $sep) . $4 . "\n";
+	} #ID
+	elsif (($chp =~ /^\+/) && ($seqwrt == 3))                      { ++$seqwrt; print "+\n" } #ID+
+	elsif ($chp =~ /^\s*$/)                                        { next } # empty line
+	else                                                           { die "\nDIED>$chp<$line>\n" } # something else
+}
+print STDERR "\r$line\n";
+
+
+=pod
+$1	@HWI-ST618_0083:3:
+$2	1101
+	:
+$3	1169
+$4	:2139
+	#TGACCA/1

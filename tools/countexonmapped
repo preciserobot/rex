@@ -1,0 +1,62 @@
+#!/usr/bin/perl -w
+
+use strict;
+use DBD::mysql;
+
+
+my $sqldb    = "rex";
+my $sqlhost  = "hkserv.local";
+my $sqlport  = "3306";
+my $sqluser  = "dbrawand";
+my $protocol = "analysis";
+my $mapping  = "mapping";
+
+my $dbh = DBI->connect("DBI:mysql:$sqldb:$sqlhost:$sqlport","$sqluser","") or die "Database connection not made: $DBI::errstr"; 
+
+# get mapping ids without stats
+my $sth = $dbh->prepare( qq{select id from $protocol } );
+$sth->execute();
+my ($mapid, @ids, %stat, $i);
+$sth->bind_columns( \$mapid );
+while( $sth->fetch() ) { push @ids, $mapid }
+print STDERR "\nWill get read statistics for " . scalar(@ids) . " mappings\n";
+# get complete table list
+my ($tab, %tables);
+$sth = $dbh->prepare( qq{ SHOW TABLES } );
+$sth->execute();
+$sth->bind_columns(\$tab);
+while($sth->fetch()) { $tables{$tab}++ }
+foreach my $m (@ids) {
+	print STDERR "\r" . ++$i . "\t$m";
+
+	# count mappings
+	my $count; #the read read ids
+	my $exptab = $m . "_raparm_rpkm";
+	$sth = $dbh->prepare( qq{ select sum(mappedreads) from $exptab } );
+	$sth->execute();
+	$sth->bind_columns( \$count );
+	while( $sth->fetch() ) {
+		$stat{$m}{exon} = $count;
+	}
+	
+	my $pf; #postfilter
+	my $mp; #mapped
+	# from rawmap
+	$sth = $dbh->prepare( qq{ select m.postfilter_reads, m.mapped_reads from $protocol as a, $mapping as m where a.mappingid = m.mappingid AND a.id = \"$m\"; } );
+	$sth->execute();
+	$sth->bind_columns( \$pf, \$mp );
+	while( $sth->fetch() ) {
+		$stat{$m}{postfilter} = $pf;
+		$stat{$m}{mapped} = $mp;
+	}
+}
+print STDERR "\r                             \r";
+
+#foreach my $k (sort {$stat{$a} <=> $stat{$b}} keys %stat) {
+foreach my $k (sort keys %stat) {
+	#print STDOUT $k . "\t  " . $stat{$k}{postfilter} . "\t  " . $stat{$k}{mapped} . "\t  " . $stat{$k}{exon} . "\t  " . int(100 * $stat{$k}{exon} / $stat{$k}{mapped}) . "\n";
+	print STDOUT $k . "\t  " . ($stat{$k}{mapped} ? $stat{$k}{mapped} : "       ") . "\t  " . $stat{$k}{exon} . "\t  ";
+	if ($stat{$k}{mapped} && $stat{$k}{mapped} =~ /\d+/) { print STDOUT int(100 * $stat{$k}{exon} / $stat{$k}{mapped}) }
+	print STDOUT "\n";
+}
+$dbh->disconnect();

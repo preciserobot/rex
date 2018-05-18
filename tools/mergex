@@ -1,0 +1,88 @@
+#!/usr/bin/perl -w
+
+# merges mappings (used for the geneva swamples)
+
+use strict;
+use DBI;
+
+die "\n\tUsage: mergex <ANNOT> <TARGETMAPPING> <MAPINGS...>\n\n" unless scalar(@ARGV) > 3;
+
+my $annot = shift @ARGV;
+my $tomap = shift @ARGV;
+my @mappi = @ARGV;
+print STDERR "Extracting from the following mapping IDs: " .(join " ", @mappi) . " using ANNOTATION $annot and MAPPING $tomap\n";
+
+my $sqldb     = "geneva";
+my $sqlhost   = "hkserv.local";
+my $sqlport   = 3306;
+my $sqluser   = "dbrawand";
+my $srt       = 'seq_region_mmu63_' . $annot;
+
+# targets
+my $genometarget  = $tomap . "_rawmap";
+my $splicetarget  = $tomap . "_splicedmap";
+
+my $sqlexec = "mysql --skip-column-names --quick -u $sqluser -h $sqlhost $sqldb";
+	
+# get seq_region_hashtable
+my $dbh = DBI->connect("DBI:mysql:$sqldb:$sqlhost:$sqlport","$sqluser","") or die "Database connection not made: $DBI::errstr"; 
+my %seq_region;
+my ($sr,$chr);
+my $sth = $dbh->prepare( qq{ SELECT seq_region_id, name FROM $srt });
+$sth->execute();
+$sth->bind_columns( \$sr, \$chr );
+while( $sth->fetch ) { $seq_region{$chr} = $sr }
+$dbh->disconnect();
+
+# extract
+my $offset = 0;
+open(GOUT, ">$genometarget") or die;
+open(SOUT, ">$splicetarget") or die;
+foreach my $m (@mappi) {
+	
+	my $reads     = $m . "_read";
+	my $genomemap = $m . "_rawmap";
+	my $splicemap = $m . "_splicedmap";
+	my $lico;
+	my $maxid = 0;
+	
+	print STDERR " -> Extracting Genome Mappings for $m\n";
+	my $query = qq( SELECT (r.id + $offset), m.strand, m.chr, m.pos + 1, LENGTH(mismatch) - LENGTH(REPLACE(mismatch, ':', '')) FROM \\\`$reads\\\` as r, \\\`$genomemap\\\` as m WHERE m.readid = r.readid );
+	open(SQL, "echo \"$query\" | $sqlexec |") or die;
+	while (<SQL>) {
+		if (/^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/) {
+			if (++$lico % 100000 == 0) { print STDERR "\r$lico " };
+			if ($1 > $maxid) { $maxid = $1 }
+			if ($seq_region{$3}) {
+				print GOUT $1 . "\t";
+				print GOUT (($2 eq '-') ? -1 : 1) . "\t";
+				print GOUT $seq_region{$3} . "\t";
+				print GOUT $4 . "\t";
+				print GOUT $5 . "\n";
+			}
+			else { warn " WARNING: seq_region_id for $3 not found!" }
+		}
+		else { die }
+	}
+	close(SQL);
+	
+	print STDERR "\n -> Extracting Splice Mappings for $m\n";
+	$query = qq( SELECT r.id , m.strand, m.splice, m.pos + 1, LENGTH(mismatch) - LENGTH(REPLACE(mismatch, ':', ''))  FROM \\\`$reads\\\` as r, \\\`$splicemap\\\` as m WHERE m.readid = r.readid );
+	open(SQL, "echo \"$query\" | $sqlexec |") or die;
+	while (<SQL>) {
+		if (/^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/) {
+			if (++$lico % 100000 == 0) { print STDERR "\r$lico " };
+			if ($1 > $maxid) { $maxid = $1 }
+			print SOUT $1 . "\t" . (($2 eq '-') ? -1 : 1) . "\t" . $3 . "\t" . $4 . "\t" . $5 . "\n";
+		}
+		else { die }
+	}
+	close(SQL);
+	# recalculate $offset
+	$offset = $maxid;
+	print STDERR "\n";
+}
+
+close(GOUT);
+close(SOUT);
+

@@ -1,0 +1,160 @@
+Tswample
+v7
+r0
+t302448696.363145
+cCheck dependencies
+cCompileC build/swample.build/Release/swample.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+cCompileC build/swample.build/Release/swample.build/Objects-normal/i386/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/swample.build/Release/swample.build/Objects-normal/ppc/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004A5C14A7000000000000563E
+t1247548583
+s22078
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample.dSYM
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/swample
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/swample.LinkFileList
+c000000004C56C8B7000000000000006E
+t1280755895
+s110
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/swample
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/swample.LinkFileList
+c000000004C56C8B7000000000000006D
+t1280755895
+s109
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/swample
+t2
+s0
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/swample.LinkFileList
+c000000004C56C8B70000000000000070
+t1280755895
+s112
+
+N/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+c000000004C56C8B500000000000008FD
+t1280755893
+s2301
+i<cstdio>
+i<cstdlib>
+i<fstream>
+i<iomanip>
+i<iostream>
+i<unistd.h>
+i<set>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies302448695#302448695#0(0"0(0#1#0"7947009927035180032#0"0#
+
+CCompileC build/swample.build/Release/swample.build/Objects-normal/i386/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal i386 c++ com.apple.compilers.gcc.4_2
+s302448695.226352
+e302448695.943637
+r0
+xCompileC
+xbuild/swample.build/Release/swample.build/Objects-normal/i386/main.o
+x/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp: In function 'int main(int, char**)':
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:40: error: 'line' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:45: error: 'idSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:47: error: 'exonFile' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'exonSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'regionSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:50: error: 'regions' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:57: error: 'exonMax' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:64: error: 'exons' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:65: error: 'exons' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:69: error: 'finaltime' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:27: warning: unused variable 'readCount'
+lSLF07#2@57"Compile /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448695#302448695#0(1198"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp: In function 'int main(int, char**)':/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:40: error: 'line' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:45: error: 'idSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:47: error: 'exonFile' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'exonSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'regionSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:50: error: 'regions' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:57: error: 'exonMax' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:64: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:65: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:69: error: 'finaltime' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:27: warning: unused variable 'readCount'11(4@37"'line' was not declared in this scope302448695#88#99#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#40#0#40#0#34"'*' was not declared in this scope0(4@39"'idSize' was not declared in this scope302448695#187#101#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#45#0#45#0#34"'*' was not declared in this scope0(4@41"'exonFile' was not declared in this scope302448695#288#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#47#0#47#0#34"'*' was not declared in this scope0(4@41"'exonSize' was not declared in this scope302448695#391#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@43"'regionSize' was not declared in this scope302448695#494#105#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@40"'regions' was not declared in this scope302448695#599#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#50#0#50#0#34"'*' was not declared in this scope0(4@40"'exonMax' was not declared in this scope302448695#701#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#57#0#57#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448695#803#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#64#0#64#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448695#903#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#65#0#65#0#34"'*' was not declared in this scope0(4@42"'finaltime' was not declared in this scope302448695#1003#104#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#69#0#69#0#34"'*' was not declared in this scope0(22@27"Unused variable 'readCount'302448695#1107#91#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#27#0#27#0#19"unused variable '*'0(0#0#49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp4300911832#1343"    cd /Volumes/FatBob/uhts/rex/bin/src/swample    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-generated-files.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-own-target-headers.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-all-target-headers.hmap -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-project-headers.hmap -F/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/include -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources/i386 -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources -c /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp -o /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/main.o1#
+
+CCompileC build/swample.build/Release/swample.build/Objects-normal/ppc/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal ppc c++ com.apple.compilers.gcc.4_2
+s302448695.236285
+e302448696.363055
+r0
+xCompileC
+xbuild/swample.build/Release/swample.build/Objects-normal/ppc/main.o
+x/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+xnormal
+xppc
+xc++
+xcom.apple.compilers.gcc.4_2
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp: In function 'int main(int, char**)':
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:40: error: 'line' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:45: error: 'idSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:47: error: 'exonFile' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'exonSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'regionSize' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:50: error: 'regions' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:57: error: 'exonMax' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:64: error: 'exons' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:65: error: 'exons' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:69: error: 'finaltime' was not declared in this scope
+o/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:27: warning: unused variable 'readCount'
+lSLF07#2@57"Compile /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448695#302448696#0(1198"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp: In function 'int main(int, char**)':/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:40: error: 'line' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:45: error: 'idSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:47: error: 'exonFile' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'exonSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'regionSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:50: error: 'regions' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:57: error: 'exonMax' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:64: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:65: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:69: error: 'finaltime' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:27: warning: unused variable 'readCount'11(4@37"'line' was not declared in this scope302448696#88#99#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#40#0#40#0#34"'*' was not declared in this scope0(4@39"'idSize' was not declared in this scope302448696#187#101#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#45#0#45#0#34"'*' was not declared in this scope0(4@41"'exonFile' was not declared in this scope302448696#288#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#47#0#47#0#34"'*' was not declared in this scope0(4@41"'exonSize' was not declared in this scope302448696#391#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@43"'regionSize' was not declared in this scope302448696#494#105#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@40"'regions' was not declared in this scope302448696#599#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#50#0#50#0#34"'*' was not declared in this scope0(4@40"'exonMax' was not declared in this scope302448696#701#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#57#0#57#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448696#803#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#64#0#64#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448696#903#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#65#0#65#0#34"'*' was not declared in this scope0(4@42"'finaltime' was not declared in this scope302448696#1003#104#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#69#0#69#0#34"'*' was not declared in this scope0(22@27"Unused variable 'readCount'302448696#1107#91#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#27#0#27#0#19"unused variable '*'0(0#0#49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp4300911832#1350"    cd /Volumes/FatBob/uhts/rex/bin/src/swample    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch ppc -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mtune=G5 -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-generated-files.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-own-target-headers.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-all-target-headers.hmap -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-project-headers.hmap -F/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/include -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources/ppc -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources -c /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp -o /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/main.o1#
+
+CCompileC build/swample.build/Release/swample.build/Objects-normal/x86_64/main.o /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
+s302448695.203823
+e302448695.226277
+r0
+xCompileC
+xbuild/swample.build/Release/swample.build/Objects-normal/x86_64/main.o
+x/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@57"Compile /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448695#302448695#0(1198"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp: In function 'int main(int, char**)':/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:40: error: 'line' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:45: error: 'idSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:47: error: 'exonFile' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'exonSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:49: error: 'regionSize' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:50: error: 'regions' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:57: error: 'exonMax' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:64: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:65: error: 'exons' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:69: error: 'finaltime' was not declared in this scope/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp:27: warning: unused variable 'readCount'11(4@37"'line' was not declared in this scope302448695#88#99#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#40#0#40#0#34"'*' was not declared in this scope0(4@39"'idSize' was not declared in this scope302448695#187#101#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#45#0#45#0#34"'*' was not declared in this scope0(4@41"'exonFile' was not declared in this scope302448695#288#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#47#0#47#0#34"'*' was not declared in this scope0(4@41"'exonSize' was not declared in this scope302448695#391#103#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@43"'regionSize' was not declared in this scope302448695#494#105#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#49#0#49#0#34"'*' was not declared in this scope0(4@40"'regions' was not declared in this scope302448695#599#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#50#0#50#0#34"'*' was not declared in this scope0(4@40"'exonMax' was not declared in this scope302448695#701#102#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#57#0#57#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448695#803#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#64#0#64#0#34"'*' was not declared in this scope0(4@38"'exons' was not declared in this scope302448695#903#100#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#65#0#65#0#34"'*' was not declared in this scope0(4@42"'finaltime' was not declared in this scope302448695#1003#104#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#69#0#69#0#34"'*' was not declared in this scope0(22@27"Unused variable 'readCount'302448695#1107#91#0(6@49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp302448693#27#0#27#0#19"unused variable '*'0(0#0#49"/Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp7886488416478786560#1349"    cd /Volumes/FatBob/uhts/rex/bin/src/swample    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-generated-files.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-own-target-headers.hmap -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-all-target-headers.hmap -iquote /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/swample-project-headers.hmap -F/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/include -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources/x86_64 -I/Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/DerivedSources -c /Volumes/FatBob/uhts/rex/bin/src/swample/main.cpp -o /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/main.o1#
+
+CCreateUniversalBinary /Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample normal "x86_64 i386 ppc"
+r0
+
+CGenerateDSYMFile /Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample.dSYM /Volumes/FatBob/uhts/rex/bin/src/swample/build/Release/swample
+r0
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/i386/swample normal i386
+r0
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/ppc/swample normal ppc
+r0
+
+CLd /Volumes/FatBob/uhts/rex/bin/src/swample/build/swample.build/Release/swample.build/Objects-normal/x86_64/swample normal x86_64
+r0
+

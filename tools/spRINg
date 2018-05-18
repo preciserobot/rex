@@ -1,0 +1,207 @@
+#!/usr/bin/perl -w
+
+use strict;
+use DBD::mysql;
+
+# globals
+
+my $sqlhost = "hkserv.local";
+my $sqluser = "dbrawand";
+my $sqlport = "3306"; 
+my $sqldb   = "rex";
+my $sqlatab = "ANALYSIS";
+my $sqlmtab = "MAPPING";
+my $sqlrtab = "RINVALUES"; # analysisID, rinvalue
+my $sqlstab = "samples_sequencing_status_frozen_dataset";
+my $sqlotab = "orthology57";
+
+my %ident_analysis;
+my %ident_specimen;
+
+# get all ids
+my ( %ids, $a, $b, $c, $d, $header, $analyisID );
+my $dbh = DBI->connect("DBI:mysql:$sqldb:$sqlhost:$sqlport","$sqluser","") or die "Database connection not made: $DBI::errstr"; 
+my $sth = $dbh->prepare( qq{ select distinct a.id, a.species, a.tissue, a.gender, m.read_header, a.description from `$sqlatab` as a LEFT JOIN `$sqlmtab` as m on a.mappingID = m.mappingID order by a.id } );
+$sth->execute();
+$sth->bind_columns( \$analyisID, \$a, \$b, \$c, \$header, \$d );
+while( $sth->fetch() ) {
+	#print STDERR "$analyisID\t";
+	my ($aa,$bb,$cc);
+	if ($analyisID =~ /^(\w{3})\_(\w{2})\_(\w)/) {
+		$aa = translate($1);
+		$bb = translate($2);
+		$cc = translate($3);
+	}
+	unless ($header) { $header = "NONE:0" }
+	if ($header =~ /^([^:]+):(\d)$/) {
+		my $runid = $1;
+		my $laneid = $2;
+		#$ids{$analyisID} = { species => $a, tissue => ($b =~ /(^[^\,]+)/ ? $1 : $b), gender => $c, run => $runid, lane => $laneid, description => $d, rin => "UNKNOWN" };
+		$ids{$analyisID} = { species => $aa, tissue => $bb, gender => $cc, run => $runid, lane => $laneid, description => $d, rin => "" };
+		#++$ident_analysis{$ids{$analyisID}->{species}};
+		#++$ident_analysis{$ids{$analyisID}->{tissue}};
+	}
+	else { warn $header }
+}
+#print STDERR "\n";
+# remove ids that are already in rintable
+$sth = $dbh->prepare( qq{ select distinct analysisID from `$sqlrtab` order by analysisID } );
+$sth->execute();
+$sth->bind_columns( \$analyisID );
+while( $sth->fetch() ) {
+	if ($ids{$analyisID}) {
+		#print STDERR "$analyisID\t";
+		delete $ids{$analyisID};
+	}
+}
+print STDERR "Will examine ". scalar(keys %ids) . " analyses\n";
+
+
+# get specimens
+my ( %samples, $sp, $ts, $gd, $sm, $iv, $rin, $rn, $ln );
+$sth = $dbh->prepare( qq{ select species, tissue, gender, sample, individual, rin, run, lane from `$sqlstab` } );
+$sth->execute();
+$sth->bind_columns( \$sp, \$ts, \$gd, \$sm, \$iv, \$rin, \$rn, \$ln  );
+while( $sth->fetch() ) {
+	my $tiss = ($ts =~ /(^[^\,]+)/ ? $1 : $ts);
+	push @{$samples{lc($sp)}{lc($tiss)}{lc($gd)}}, { sample => $sm, individual => $iv, rin => $rin, run => $rn, lane => $ln };
+	#++$ident_specimen{lc($sp)};
+	#++$ident_specimen{lc($tiss)};
+	
+}
+
+#foreach my $ident (sort keys %ident_analysis) { print STDERR "\t$ident\n" }
+#print STDERR "\n///\n";
+#foreach my $ident (sort keys %ident_specimen) { print STDERR "\t$ident\n" }
+
+foreach my $id (keys %ids) {
+	my $s = $ids{$id}->{species};
+	my $t = $ids{$id}->{tissue};
+	my $g = $ids{$id}->{gender};
+	if ($samples{$s}{$t}{$g}) {
+		
+		print STDERR $id . "\t";
+		print STDERR $ids{$id}->{species} . "\t";
+		print STDERR $ids{$id}->{tissue} . "\t";
+		print STDERR $ids{$id}->{gender} . "\t";
+		print STDERR $ids{$id}->{run} . "\t";
+		print STDERR $ids{$id}->{lane} . "\t";
+		print STDERR $ids{$id}->{description} . "\n";
+		
+		if (scalar(@{$samples{$s}{$t}{$g}}) > 1) {
+			my $gotrin;
+			# search if ONE has same lane
+			if ($gotrin = unique($samples{$s}{$t}{$g},$ids{$id},["lane"])) {
+				$ids{$id}->{rin} = $gotrin;
+			}
+			elsif ($gotrin = unique($samples{$s}{$t}{$g},$ids{$id},["lane","run"])) {
+				$ids{$id}->{rin} = $gotrin;
+			}
+			elsif ($gotrin = allSameRIN($samples{$s}{$t}{$g})) {
+				$ids{$id}->{rin} = $gotrin;
+			}
+			else {
+				# manual
+				foreach my $ll (@{$samples{$s}{$t}{$g}}) {
+					print STDERR "\t";
+					print STDERR $s . "\t";
+					print STDERR $t . "\t";
+					print STDERR $g . "\t";
+					print STDERR $ll->{sample} . "\t";
+					print STDERR $ll->{individual} . "\t";
+					print STDERR "LANE:" . $ll->{run} . ":" . $ll->{lane} . "\t";
+					print STDERR "RIN:" . $ll->{rin} . "\n";
+				}
+				print STDERR "\nEnter RIN value: ";
+				$gotrin = <STDIN>;
+				chomp($gotrin);
+				$ids{$id}->{rin} = $gotrin;
+			}
+		}
+		else {
+			# SOLVED
+			$ids{$id}->{rin} = $samples{$s}{$t}{$g}[0]->{rin};
+		}
+		
+		#UPDATE SQL TABLE
+		if ($ids{$id}->{rin}) {
+			
+			$sth = $dbh->prepare( "INSERT INTO $sqlrtab (analysisID,rinvalue) VALUES (\"". $id . "\",\"" . $ids{$id}->{rin} . "\")" );
+			$sth->execute();
+		}
+	}
+	else {
+		warn "\nWARNING: $id NOT FOUND\n";
+	}
+}
+
+sub allSameRIN {
+	my $swamples = $_[0];
+	my $rinvalue;
+	foreach my $arr (@{$swamples}) {
+		$rinvalue = (!($rinvalue) || $rinvalue eq $arr->{rin}) ? $arr->{rin} : "AMBIGUOUS";
+	}
+	if ($rinvalue ne "AMBIGUOUS") {
+		return $rinvalue;
+	}
+	return;
+}
+
+sub unique {
+	my $a = $_[0];
+	my $h = $_[1];
+	my $k = $_[2];
+	my @results;
+	
+	my $mergedHasKeyValue = sub {
+		my $mkey;
+		foreach my $kk (@{$k}) {
+			$mkey .= $h->{$kk};
+		}
+		$mkey;
+	};
+	
+	my $rinvalue = "UNKNOWN";
+	foreach my $arr (@{$a}) {
+		my $mergedArrKeyValue = sub {
+			my $mkey;
+			foreach my $kk (@{$k}) {
+				$mkey .= $arr->{$kk};
+			}
+			$mkey;
+		};
+		if ($mergedArrKeyValue eq $mergedHasKeyValue) {
+			$rinvalue = ($rinvalue eq "UNKNOWN" || $rinvalue eq $arr->{rin}) ? $arr->{rin} : "AMBIGUOUS";
+		}
+	}
+	# examine results
+	return ($rinvalue eq "UNKNOWN" || $rinvalue eq "AMBIGUOUS") ? "" : $rinvalue;
+}
+
+
+sub translate {
+	my $dict = {
+		# species
+		'hsa' => "human",
+		'ptr' => "chimp",
+		'ggo' => "gorilla",
+		'ppy' => "orangutan",
+		'mml' => "macaque",
+		'mmu' => "mouse",
+		'mdo' => "opossum",
+		'oan' => "platypus",
+		'gga' => "chicken",
+		# tissues
+		'br' => "brain",
+		'cb' => "cerebellum",
+		'ht' => "heart",
+		'kd' => "kidney",
+		'lv' => "liver",
+		'ts' => "testis",
+		# gender
+		'm' => "male",
+		'f' => "female"
+	};
+	unless ($dict->{$_[0]}) { warn "\nWARNING: $_[0] is not in dictionary!\n" }
+	return $dict->{$_[0]};
+}

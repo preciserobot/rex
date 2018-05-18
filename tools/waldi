@@ -1,0 +1,57 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Bio::SeqIO;
+
+# READ GENERATOR
+# RANDOMIZES STRAND
+# OPTION FOR PE READS
+
+my $seqfile   = shift @ARGV;
+my $seqheader = '@WALDI-'.$seqfile.':1:'; # 1:0:1302/1
+my $qual      = ":>>>>>>>>>>============<<<<<<<<<<;;;;;;;::::::::999999988888888888877777777766666665555444443333222";
+
+print STDERR "Read Length [75]: ";
+my $readl = <STDIN>;
+chomp($readl);
+$readl = ($readl =~/(\d+)/) ? $1 : 75;
+
+print STDERR "Read Spacing [1]: ";
+my $space = <STDIN>;
+chomp($space);
+$space = ($space =~/(\d+)/) ? $1 : 1;
+
+print STDERR "PE Insert [0]: ";
+my $insertsize = <STDIN>;
+chomp($insertsize);
+$insertsize = ($insertsize =~/(\d+)/) ? $1 : 0;
+
+my $t = 0;
+my $stream = Bio::SeqIO->new(-format => 'fasta', -file => $seqfile);
+while ( my $seq = $stream->next_seq() ) {
+	my $tile = ($t++ % 100) + 1; # equals sequence
+	for(my $i = 1; $i <= $seq->length() - (2 * $readl + $insertsize - 2); $i += $space ) {
+		my $strand = int(rand 2);
+		my $end = $i+$readl-1;
+		print STDOUT $seqheader . $tile . ':' . $i . ':' . $end . '/1' . "\n"; 
+		print STDOUT ($strand) ? _revcom($seq->subseq($i, $end)) : $seq->subseq($i, $end);
+		print STDOUT "\n+\n";
+		print STDOUT substr($qual, 0, $readl) . "\n";
+		if ($insertsize) {
+			my $second_start = $end + $insertsize;
+			my $second_end   = $end + $insertsize + $readl - 1;
+			print STDOUT $seqheader . $tile . ':' . $i . ':' . $end . '/2' . "\n"; 
+			print STDOUT ($strand) ? $seq->subseq($second_start, $second_end) : _revcom($seq->subseq($second_start, $second_end));
+			print STDOUT "\n+\n";
+			print STDOUT substr($qual, 0, $readl) . "\n";
+		}
+	}
+}
+
+
+sub _revcom {
+	my $s = $_[0];
+	$s =~ tr/ATCG/TAGC/;
+	my $r = reverse($s);
+	return $r;
+}
